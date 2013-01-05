@@ -4,5 +4,6 @@
     <string name="app_name">FacilityManagerApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="test_string">test</string>
 
 </resources>
