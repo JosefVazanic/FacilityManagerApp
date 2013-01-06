@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Spinner;
 import android.widget.TextView;
 import at.edu.uas.fmapp.utils.FmApp;
 
@@ -33,6 +32,10 @@ public class HomeActivity extends Activity {
 	public void logout(View v) {
 		startActivity(new Intent(this, WelcomeActivity.class));
 		appState.logout();
+	}
+	
+	public void loadObjectSearch(View v) {
+		startActivity(new Intent(this, SearchObjects.class));
 	}
 
 }

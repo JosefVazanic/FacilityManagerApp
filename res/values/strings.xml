@@ -11,5 +11,10 @@
     <string name="activity_welcome_login_button">Login</string>
     <string name="activity_home_title">Home</string>
     <string name="activity_home_objecs">Your Objects</string>
+    <string name="activity_search_objects_title">Search your Objects</string>
+    <string name="activity_search_objects_info">Find by:</string>
+    <string name="activity_search_objects_search_address">Address</string>
+    <string name="activity_search_objects_search_qrcode">QR Code</string>
+    <string name="activity_search_objects_search_location">Location</string>
 
 </resources>

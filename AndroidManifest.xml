@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="16" />
 
     <application
@@ -34,6 +34,10 @@
         <activity
             android:name="at.edu.uas.fmapp.HomeActivity"
             android:label="@string/activity_home_title" >
+        </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.SearchObjects"
+            android:label="@string/activity_search_objects_title" >
         </activity>
     </application>
 
