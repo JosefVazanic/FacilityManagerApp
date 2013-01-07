@@ -45,18 +45,17 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/buttonWay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="loadWay"
-                android:text="@string/activity_object_detail_button_way" />
-
-            <Button
                 android:id="@+id/buttonInformation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="loadInformation"
                 android:text="@string/activity_object_detail_button_information" />
+            <Button
+                android:id="@+id/buttonWay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="loadWay"
+                android:text="@string/activity_object_detail_button_way" />
 
             <Button
                 android:id="@+id/buttonTasks"

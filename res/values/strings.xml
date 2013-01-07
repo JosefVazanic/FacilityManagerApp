@@ -28,7 +28,10 @@
     <string name="activity_object_detail_button_tasks">Your Tasks</string>
     <string name="activity_object_detail_back_to_result">Back To Result</string>
     <string name="activity_result_objects_way_title">Way to Object</string>
+    <string name="activity_result_objects_way_back_to_object">Back to Object</string>
     <string name="activity_result_objects_information_title">Information</string>
+    <string name="activity_result_objects_information_back_to_object">Back to Object</string>
     <string name="activity_result_objects_tasks_title">Your Tasks</string>
+    <string name="activity_result_objects_tasks_back_to_object">Back to Object</string>
 
 </resources>
