@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="16" />
+        android:minSdkVersion="4"
+        android:targetSdkVersion="8" />
 
     <application
         android:name="at.edu.uas.fmapp.utils.FmApp"
@@ -38,6 +38,26 @@
         <activity
             android:name="at.edu.uas.fmapp.SearchObjects"
             android:label="@string/activity_search_objects_title" >
+        </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.ResultObjects"
+            android:label="@string/activity_result_objects_title" >
+        </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.ObjectDetail"
+            android:label="@string/activity_object_detail_title" >
+        </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.ResultObjectsWay"
+            android:label="@string/activity_result_objects_way_title" >
+        </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.ResultObjectsInformation"
+            android:label="@string/activity_result_objects_information_title" >
+        </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.ResultObjectsTasks"
+            android:label="@string/activity_result_objects_tasks_title" >
         </activity>
     </application>
 

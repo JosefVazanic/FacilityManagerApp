@@ -1,29 +1,31 @@
 package at.edu.uas.fmapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
+import at.edu.uas.fmapp.classes.WorkObject;
 import at.edu.uas.fmapp.utils.FmApp;
 
 public class SearchObjects extends Activity {
 
-	FmApp appState;
+	private FmApp appState;
 
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_objects);
 
 		appState = (FmApp) getApplicationContext();
-		TextView loginName = (TextView) findViewById(R.id.loginName);
+		Button loginName = (Button) findViewById(R.id.loginName);
 		loginName.setText(appState.getLoggedInPerson());
 		
 		setCheckedRadioButton(null);
@@ -73,6 +75,29 @@ public class SearchObjects extends Activity {
 
 	public void loadHome(View v) {
 		startActivity(new Intent(this, HomeActivity.class));
+	}
+	
+	public void searchAddress(View v) {
+		List<WorkObject> result = new ArrayList<WorkObject>();
+		result.add(new WorkObject(1l, "Objekt A", "Dorfgasse 12"));
+		appState.setResult(result);
+		startActivity(new Intent(this, ResultObjects.class));
+	}
+	
+	public void searchQrCode(View v) {
+		List<WorkObject> result = new ArrayList<WorkObject>();
+		result.add(new WorkObject(1l, "Objekt A", "Dorfgasse 12"));
+		result.add(new WorkObject(1l, "Objekt B", "MachSauber Straﬂe 99"));
+		result.add(new WorkObject(1l, "Objekt C", "Schmutzgasse 10"));
+		appState.setResult(result);
+		startActivity(new Intent(this, ResultObjects.class));
+	}
+	
+	public void searchLocation(View v) {
+		List<WorkObject> result = new ArrayList<WorkObject>();
+		result.add(new WorkObject(1l, "Objekt C", "Schmutzgasse 10"));
+		appState.setResult(result);
+		startActivity(new Intent(this, ResultObjects.class));
 	}
 	
 }

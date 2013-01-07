@@ -6,7 +6,9 @@
     <string name="menu_settings">Settings</string>
     <string name="test_string">test</string>
     <string name="logout_button">Logout</string>
-    <string name="activity_welcome_title">Welcome to the Facility Manager!</string>
+    <string name="search_button">Search</string>
+    <string name="scan_button">Scan</string>
+    <string name="activity_welcome_title">FacilityManager</string>
     <string name="activity_welcome_info">Please select your account:</string>
     <string name="activity_welcome_login_button">Login</string>
     <string name="activity_home_title">Home</string>
@@ -14,7 +16,19 @@
     <string name="activity_search_objects_title">Search your Objects</string>
     <string name="activity_search_objects_info">Find by:</string>
     <string name="activity_search_objects_search_address">Address</string>
+    <string name="activity_search_objects_search_address_field_address">Address</string>
+    <string name="activity_search_objects_search_address_field_postalcode">Postal Code</string>
     <string name="activity_search_objects_search_qrcode">QR Code</string>
     <string name="activity_search_objects_search_location">Location</string>
+    <string name="activity_result_objects_title">Object Search Result</string>
+    <string name="activity_result_objects_back_to_search">Back To Search</string>
+    <string name="activity_object_detail_title">Object Detail</string>
+    <string name="activity_object_detail_button_way">Way</string>
+    <string name="activity_object_detail_button_information">Information</string>
+    <string name="activity_object_detail_button_tasks">Your Tasks</string>
+    <string name="activity_object_detail_back_to_result">Back To Result</string>
+    <string name="activity_result_objects_way_title">Way to Object</string>
+    <string name="activity_result_objects_information_title">Information</string>
+    <string name="activity_result_objects_tasks_title">Your Tasks</string>
 
 </resources>

@@ -11,14 +11,14 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
-        <TextView
+        <Button
             android:id="@+id/loginName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="loadHome"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:onClick="loadHome" />
 
         <Button
             android:id="@+id/logoutButton"
@@ -69,22 +69,43 @@
         </RadioGroup>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/layoutAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
+            <EditText
+                android:id="@+id/editTextAddress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_search_objects_search_address_field_address"
+                android:inputType="text" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/editTextPostalCode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_search_objects_search_address_field_postalcode"
+                android:inputType="text" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/buttonSearchAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="address"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:onClick="searchAddress"
+                android:text="@string/search_button" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,11 +114,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
+            <Button
+                android:id="@+id/buttonSearchQrCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="qrcode"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:onClick="searchQrCode"
+                android:text="@string/scan_button" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,12 +128,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
+            <Button
+                android:id="@+id/buttonSearchLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="location"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:onClick="searchLocation"
+                android:text="@string/scan_button" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

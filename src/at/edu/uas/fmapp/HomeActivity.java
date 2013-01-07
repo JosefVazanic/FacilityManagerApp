@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 import at.edu.uas.fmapp.utils.FmApp;
 
 public class HomeActivity extends Activity {
@@ -18,7 +18,7 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.activity_home);
 		
 		appState = (FmApp) getApplicationContext();
-		TextView loginName = (TextView) findViewById(R.id.loginName);
+		Button loginName = (Button) findViewById(R.id.loginName);
 		loginName.setText(appState.getLoggedInPerson());
 	}
 

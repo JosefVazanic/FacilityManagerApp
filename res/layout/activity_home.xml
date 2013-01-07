@@ -11,27 +11,35 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
-        <TextView
+        <Button
             android:id="@+id/loginName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:clickable="false" />
 
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/logout_button"
-            android:onClick="logout" />
+            android:onClick="logout"
+            android:text="@string/logout_button" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_home_objecs"
-        android:onClick="loadObjectSearch" />
+        android:orientation="vertical"
+        android:layout_marginTop="20dp" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="loadObjectSearch"
+            android:text="@string/activity_home_objecs" />
+    </LinearLayout>
 
 </LinearLayout>
