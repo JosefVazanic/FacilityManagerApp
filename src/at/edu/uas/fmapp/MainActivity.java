@@ -6,6 +6,7 @@ import org.xmlrpc.android.XMLRPCClient;
 import org.xmlrpc.android.XMLRPCException;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -26,18 +27,34 @@ public class MainActivity extends Activity {
 	}
 
 	public void onTestButtonClick(View view) {
-		XMLRPCClient client = new XMLRPCClient(
-				"http://wi-gate.technikum-wien.at:60354/");
-		// get tasks
-		String[] tasks = new String[0];
-		String result = "";
-		try {
-			tasks = (String[]) client.call("getTaskList");
-			result = Arrays.asList(tasks).toString();
-		} catch (XMLRPCException e) {
-			result = "Failed: " + e.getMessage();
-		}
+		
 
-		((TextView) findViewById(R.id.testTextView)).setText(result);
+		
+		AsyncTask<String, Void, String> a = new AsyncTask<String, Void, String>() {
+
+			@Override
+			protected String doInBackground(String... params) {
+				XMLRPCClient client = new XMLRPCClient(
+						"http://wi-gate.technikum-wien.at:60354/xmlrpc");
+				// get tasks
+				String[] tasks = new String[0];
+				String result = "";
+				try {
+					tasks = (String[]) client.call("getTaskList");
+					result = Arrays.asList(tasks).toString();
+				} catch (XMLRPCException e) {
+					result = "Failed: " + e.getMessage();
+				}
+				return result;
+			}
+			
+			@Override
+			protected void onPostExecute(String result) {
+				super.onPostExecute(result);
+				((TextView) findViewById(R.id.testTextView)).setText(result);
+			}
+			
+		};
+		a.execute();
 	}
 }
