@@ -1,23 +1,24 @@
 package at.edu.uas.fmapp;
 
-import java.util.Arrays;
-
-import org.xmlrpc.android.XMLRPCClient;
-import org.xmlrpc.android.XMLRPCException;
+import java.util.List;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import at.edu.uas.fmapp.server.FmServiceExecutionListener;
+import at.edu.uas.fmapp.server.FmServiceProxy;
 
 public class MainActivity extends Activity {
+
+	FmServiceProxy proxy;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		proxy = new FmServiceProxy();
 	}
 
 	@Override
@@ -27,34 +28,17 @@ public class MainActivity extends Activity {
 	}
 
 	public void onTestButtonClick(View view) {
-		
 
-		
-		AsyncTask<String, Void, String> a = new AsyncTask<String, Void, String>() {
+		FmServiceExecutionListener<List<String>> executionListener = new FmServiceExecutionListener<List<String>>() {
 
 			@Override
-			protected String doInBackground(String... params) {
-				XMLRPCClient client = new XMLRPCClient(
-						"http://wi-gate.technikum-wien.at:60354/xmlrpc");
-				// get tasks
-				String[] tasks = new String[0];
-				String result = "";
-				try {
-					tasks = (String[]) client.call("getTaskList");
-					result = Arrays.asList(tasks).toString();
-				} catch (XMLRPCException e) {
-					result = "Failed: " + e.getMessage();
-				}
-				return result;
+			public void onPostExecute(List<String> result) {
+				((TextView) findViewById(R.id.testTextView)).setText(result
+						.toString());
+
 			}
-			
-			@Override
-			protected void onPostExecute(String result) {
-				super.onPostExecute(result);
-				((TextView) findViewById(R.id.testTextView)).setText(result);
-			}
-			
 		};
-		a.execute();
+
+		proxy.getTaskList("testUserId", executionListener);
 	}
 }
