@@ -17,6 +17,7 @@ public class FmServiceProxy {
 
 	private static final String METHOD_GET_MASTER_DATA = "getMasterData";
 	private static final String METHOD_GET_TASKS = "getTaskList";
+	private static final String METHOD_GET_USER = "getUserList";
 	private static final String METHOD_SUBMIT_TASK_STATUS = "submitTaskStatus";
 	private static final String METHOD_SUBMIT_NEW_TASK = "submitNewTask";
 
@@ -37,6 +38,12 @@ public class FmServiceProxy {
 				executionListener);
 	}
 
+	public void getUserList(String userId,
+			FmServiceExecutionListener executionListener) {
+		executeServiceMethod(METHOD_GET_USER, new Object[] { userId },
+				executionListener);
+	}
+
 	private void executeServiceMethod(final String methodName,
 			final Object[] params,
 			final FmServiceExecutionListener executionListener) {
@@ -49,8 +56,8 @@ public class FmServiceProxy {
 			final Object serviceResult) {
 
 		Object result = null;
-		
-		if(serviceResult == null) {
+
+		if (serviceResult == null) {
 			return result;
 		}
 

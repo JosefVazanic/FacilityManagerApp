@@ -1,5 +1,8 @@
 package at.edu.uas.fmapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +10,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 import at.edu.uas.fmapp.utils.FmApp;
 
 public class WelcomeActivity extends Activity {
@@ -19,18 +25,29 @@ public class WelcomeActivity extends Activity {
 		setContentView(R.layout.activity_welcome);
 
 		appState = (FmApp) getApplicationContext();
+		
+		FmServiceExecutionListener<List<String>> executionListener = new FmServiceExecutionListener<List<String>>() {
+			
+			@Override
+			public void onPostExecute(List<String> result) {
+				// set values for login spinner
+				if(result == null) {
+					result = new ArrayList<String>();
+				}
+				Spinner loginspinner = (Spinner) findViewById(R.id.loginSpinner);
+				ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getBaseContext(),
+						android.R.layout.simple_spinner_item, result.toArray(new String[0]));
+				adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+				loginspinner.setAdapter(adapter2);
+				loginspinner.setSelection(Integer.parseInt("0"));
+			}
+		};
 
-		// dummy login data
-		String[] array = new String[] { "Hans Putzer", "Dieter Rein",
-				"Sigmunde Hauswart", "Barbara Sauber", "Bruce Schmutzkiller" };
+		appState.getProxy().getUserList("testUserId", executionListener);
 
-		// login spinner
-		Spinner loginspinner = (Spinner) findViewById(R.id.loginSpinner);
-		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, array);
-		adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		loginspinner.setAdapter(adapter2);
-		loginspinner.setSelection(Integer.parseInt("0"));
+//		appState.getProxy().getTaskList("testUserId", executionListener);
+
+		
 	}
 
 	@Override
