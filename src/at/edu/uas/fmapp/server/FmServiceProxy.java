@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlrpc.android.XMLRPCClient;
-import org.xmlrpc.android.XMLRPCException;
 
 import android.os.AsyncTask;
 
@@ -12,20 +11,20 @@ import android.os.AsyncTask;
 public class FmServiceProxy {
 
 	private static final String SERVER_URL = "http://wi-gate.technikum-wien.at:60354/xmlrpc";
-	private static final String LOCAL_SERVER_URL = "http://10.93.133.129:8080/FacilityManagerService/xmlrpc";
+	private static final String LOCAL_SERVER_URL = "http://192.168.2.4:8080/FacilityManagerService/xmlrpc";
 	private static final String SERVICE_NAME = "FacilityManagerService.";
 
 	private static final String METHOD_GET_MASTER_DATA = "getMasterData";
 	private static final String METHOD_GET_TASKS = "getTaskList";
-	private static final String METHOD_GET_USER = "getUserList";
+	private static final String METHOD_GET_USERS = "getUserList";
 	private static final String METHOD_SUBMIT_TASK_STATUS = "submitTaskStatus";
 	private static final String METHOD_SUBMIT_NEW_TASK = "submitNewTask";
 
 	private XMLRPCClient xmlRpcClient;
 
 	public FmServiceProxy() {
-		xmlRpcClient = new XMLRPCClient(SERVER_URL);
-		// xmlRpcClient = new XMLRPCClient(LOCAL_SERVER_URL); // for testing
+		 xmlRpcClient = new XMLRPCClient(SERVER_URL);
+//		xmlRpcClient = new XMLRPCClient(LOCAL_SERVER_URL); // for testing
 	}
 
 	public void updateMasterData(FmServiceExecutionListener executionListener) {
@@ -40,7 +39,7 @@ public class FmServiceProxy {
 
 	public void getUserList(String userId,
 			FmServiceExecutionListener executionListener) {
-		executeServiceMethod(METHOD_GET_USER, new Object[] { userId },
+		executeServiceMethod(METHOD_GET_USERS, new Object[] { userId },
 				executionListener);
 	}
 
@@ -68,6 +67,13 @@ public class FmServiceProxy {
 
 		if (methodName.equals(METHOD_GET_MASTER_DATA)) {
 
+		} else if (methodName.equals(METHOD_GET_USERS)) {
+			List<String> taskList = new ArrayList<String>();
+			for (Object task : (Object[]) serviceResult) {
+				taskList.add((String) task);
+			}
+			result = taskList;
+
 		} else if (methodName.equals(METHOD_GET_TASKS)) {
 			List<String> taskList = new ArrayList<String>();
 			for (Object task : (Object[]) serviceResult) {
@@ -94,13 +100,13 @@ public class FmServiceProxy {
 		protected Object doInBackground(Object... params) {
 			Object result = null;
 			try {
+				String serviceMethod = SERVICE_NAME + methodName;
 				if (params != null) {
-					result = xmlRpcClient.call(SERVICE_NAME + methodName,
-							params);
+					result = xmlRpcClient.call(serviceMethod, params);
 				} else {
-					result = xmlRpcClient.call(SERVICE_NAME + methodName);
+					result = xmlRpcClient.call(serviceMethod);
 				}
-			} catch (XMLRPCException e) {
+			} catch (Exception e) {
 				System.out.println("Failed: " + e.getMessage());
 			}
 			return result;
