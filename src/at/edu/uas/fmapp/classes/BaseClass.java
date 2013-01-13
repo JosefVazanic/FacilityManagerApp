@@ -2,7 +2,7 @@ package at.edu.uas.fmapp.classes;
 
 public class BaseClass {
 
-	private Long id;
+	protected Long id;
 
 	public BaseClass() {
 		super();

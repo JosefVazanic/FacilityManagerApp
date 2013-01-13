@@ -4,25 +4,26 @@ import java.util.List;
 
 import android.app.Application;
 import at.edu.uas.fmapp.classes.WorkObject;
+import at.edu.uas.fmapp.classes.Worker;
 import at.edu.uas.fmapp.server.FmServiceProxy;
 
 public class FmApp extends Application {
 
-	private String loggedInPerson;
+	private Worker loggedInPerson;
 	private List<WorkObject> result;
 	private WorkObject selectedItem;
-	
+
 	private FmServiceProxy proxy;
-	
+
 	public FmApp() {
 		this.proxy = new FmServiceProxy();
 	}
 
-	public String getLoggedInPerson() {
+	public Worker getLoggedInPerson() {
 		return loggedInPerson;
 	}
 
-	public void setLoggedInPerson(String loggedInPerson) {
+	public void setLoggedInPerson(Worker loggedInPerson) {
 		this.loggedInPerson = loggedInPerson;
 	}
 

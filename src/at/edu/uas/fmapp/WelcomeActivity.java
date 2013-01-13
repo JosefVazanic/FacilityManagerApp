@@ -10,8 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import at.edu.uas.fmapp.classes.Worker;
 import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 import at.edu.uas.fmapp.utils.FmApp;
 
@@ -25,29 +24,27 @@ public class WelcomeActivity extends Activity {
 		setContentView(R.layout.activity_welcome);
 
 		appState = (FmApp) getApplicationContext();
-		
-		FmServiceExecutionListener<List<String>> executionListener = new FmServiceExecutionListener<List<String>>() {
-			
+
+		FmServiceExecutionListener<List<Worker>> executionListener = new FmServiceExecutionListener<List<Worker>>() {
+
 			@Override
-			public void onPostExecute(List<String> result) {
+			public void onPostExecute(List<Worker> result) {
 				// set values for login spinner
-				if(result == null) {
-					result = new ArrayList<String>();
+				if (result == null) {
+					result = new ArrayList<Worker>();
 				}
-				Spinner loginspinner = (Spinner) findViewById(R.id.loginSpinner);
-				ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getBaseContext(),
-						android.R.layout.simple_spinner_item, result.toArray(new String[0]));
-				adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-				loginspinner.setAdapter(adapter2);
-				loginspinner.setSelection(Integer.parseInt("0"));
+				Spinner loginSpinner = (Spinner) findViewById(R.id.loginSpinner);
+				ArrayAdapter<Worker> adapter = new ArrayAdapter<Worker>(
+						getBaseContext(), android.R.layout.simple_spinner_item,
+						result);
+				adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+				loginSpinner.setAdapter(adapter);
+				loginSpinner.setSelection(Integer.parseInt("0"));
 			}
 		};
 
-		appState.getProxy().getUserList("testUserId", executionListener);
+		appState.getProxy().getWorkers(executionListener);
 
-//		appState.getProxy().getTaskList("testUserId", executionListener);
-
-		
 	}
 
 	@Override
@@ -58,10 +55,27 @@ public class WelcomeActivity extends Activity {
 	}
 
 	public void loadHomeLayout(View v) {
-		startActivity(new Intent(this, HomeActivity.class));
-		
+
 		Spinner loginspinner = (Spinner) findViewById(R.id.loginSpinner);
-		appState.setLoggedInPerson((String) loginspinner.getSelectedItem());
+		final Worker selectedWorker = (Worker) loginspinner.getSelectedItem();
+		FmServiceExecutionListener<Boolean> executionListener = new FmServiceExecutionListener<Boolean>() {
+
+			@Override
+			public void onPostExecute(Boolean result) {
+				// set values for login spinner
+				if (Boolean.TRUE.equals(result)) {
+					appState.setLoggedInPerson(selectedWorker);
+					startActivity(new Intent(WelcomeActivity.this,
+							HomeActivity.class));
+				} else {
+					// TODO show error
+				}
+
+			}
+		};
+
+		appState.getProxy().authenticateWorker(selectedWorker, "worker123",
+				executionListener);
 	}
 
 	public void loadMainLayout(View v) {

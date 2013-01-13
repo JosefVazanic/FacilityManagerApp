@@ -19,7 +19,7 @@ public class ResultObjectsWay extends Activity {
 
 		appState = (FmApp) getApplicationContext();
 		Button loginName = (Button) findViewById(R.id.loginName);
-		loginName.setText(appState.getLoggedInPerson());
+		loginName.setText(appState.getLoggedInPerson().toString());
 
 		// setTitle(appState.getSelectedItem().getName() + " - "
 		// + appState.getSelectedItem().getAddress());

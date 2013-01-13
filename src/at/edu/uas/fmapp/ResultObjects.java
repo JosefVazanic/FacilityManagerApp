@@ -24,7 +24,7 @@ public class ResultObjects extends Activity {
 
 		appState = (FmApp) getApplicationContext();
 		Button loginName = (Button) findViewById(R.id.loginName);
-		loginName.setText(appState.getLoggedInPerson());
+		loginName.setText(appState.getLoggedInPerson().toString());
 
 		WorkObjectAdapter adapter = new WorkObjectAdapter(this,
 				R.layout.result_view, appState.getResult().toArray(

@@ -26,7 +26,7 @@ public class SearchObjects extends Activity {
 
 		appState = (FmApp) getApplicationContext();
 		Button loginName = (Button) findViewById(R.id.loginName);
-		loginName.setText(appState.getLoggedInPerson());
+		loginName.setText(appState.getLoggedInPerson().toString());
 		
 		setCheckedRadioButton(null);
 	}

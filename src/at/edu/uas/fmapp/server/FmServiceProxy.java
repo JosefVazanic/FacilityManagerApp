@@ -1,11 +1,13 @@
 package at.edu.uas.fmapp.server;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.xmlrpc.android.XMLRPCClient;
 
 import android.os.AsyncTask;
+import at.edu.uas.fmapp.classes.Worker;
 
 @SuppressWarnings("rawtypes")
 public class FmServiceProxy {
@@ -16,7 +18,8 @@ public class FmServiceProxy {
 
 	private static final String METHOD_GET_MASTER_DATA = "getMasterData";
 	private static final String METHOD_GET_TASKS = "getTaskList";
-	private static final String METHOD_GET_USERS = "getUserList";
+	private static final String METHOD_GET_WORKERS = "getWorkerList";
+	private static final String METHOD_AUTHENTICATE = "authenticate";
 	private static final String METHOD_SUBMIT_TASK_STATUS = "submitTaskStatus";
 	private static final String METHOD_SUBMIT_NEW_TASK = "submitNewTask";
 
@@ -37,9 +40,14 @@ public class FmServiceProxy {
 				executionListener);
 	}
 
-	public void getUserList(String userId,
+	public void getWorkers(FmServiceExecutionListener executionListener) {
+		executeServiceMethod(METHOD_GET_WORKERS, null, executionListener);
+	}
+
+	public void authenticateWorker(Worker worker, String password,
 			FmServiceExecutionListener executionListener) {
-		executeServiceMethod(METHOD_GET_USERS, new Object[] { userId },
+		executeServiceMethod(METHOD_AUTHENTICATE, new Object[] {
+				worker.getId(), worker.getUserName(), password },
 				executionListener);
 	}
 
@@ -67,12 +75,27 @@ public class FmServiceProxy {
 
 		if (methodName.equals(METHOD_GET_MASTER_DATA)) {
 
-		} else if (methodName.equals(METHOD_GET_USERS)) {
-			List<String> taskList = new ArrayList<String>();
-			for (Object task : (Object[]) serviceResult) {
-				taskList.add((String) task);
+		} else if (methodName.equals(METHOD_GET_WORKERS)) {
+			List<Worker> workerList = new ArrayList<Worker>();
+
+			for (Object workerDataObject : (Object[]) serviceResult) {
+
+				Object[] workerData = (Object[]) workerDataObject;
+
+				Worker worker = new Worker((Long) workerData[0]);
+				worker.setUserName((String) workerData[1]);
+				worker.setFirstName((String) workerData[2]);
+				worker.setLastName((String) workerData[3]);
+				worker.setDateOfBirth((Date) workerData[4]);
+				worker.setMobile((String) workerData[5]);
+				worker.setPhone((String) workerData[6]);
+				worker.setEmail((String) workerData[7]);
+				worker.setLatitude((Long) workerData[8]);
+				worker.setLongitude((Long) workerData[9]);
+
+				workerList.add(worker);
 			}
-			result = taskList;
+			result = workerList;
 
 		} else if (methodName.equals(METHOD_GET_TASKS)) {
 			List<String> taskList = new ArrayList<String>();
@@ -80,8 +103,9 @@ public class FmServiceProxy {
 				taskList.add((String) task);
 			}
 			result = taskList;
+		} else if (methodName.equals(METHOD_AUTHENTICATE)) {
+			result = Boolean.TRUE.equals(serviceResult);
 		}
-
 		return result;
 	}
 
