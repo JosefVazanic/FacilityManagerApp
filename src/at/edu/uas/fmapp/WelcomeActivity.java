@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 import at.edu.uas.fmapp.classes.Worker;
 import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 
@@ -18,7 +20,7 @@ public class WelcomeActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-		
+
 		FmServiceExecutionListener<List<Worker>> executionListener = new FmServiceExecutionListener<List<Worker>>() {
 
 			@Override
@@ -48,7 +50,7 @@ public class WelcomeActivity extends BaseActivity {
 		return true;
 	}
 
-	public void loadHomeLayout(View v) {
+	public void login(View v) {
 
 		Spinner loginspinner = (Spinner) findViewById(R.id.loginSpinner);
 		final Worker selectedWorker = (Worker) loginspinner.getSelectedItem();
@@ -62,14 +64,17 @@ public class WelcomeActivity extends BaseActivity {
 					startActivity(new Intent(WelcomeActivity.this,
 							HomeActivity.class));
 				} else {
-					// TODO show error
+					Toast.makeText(getBaseContext(), "password invalid",
+							Toast.LENGTH_LONG).show();
 				}
 
 			}
 		};
 
-		appState.getProxy().authenticateWorker(selectedWorker, "worker123",
-				executionListener);
+		EditText textPassword = (EditText) findViewById(R.id.textPassword);
+
+		appState.getProxy().authenticateWorker(selectedWorker,
+				textPassword.getText().toString(), executionListener);
 	}
 
 	public void loadMainLayout(View v) {

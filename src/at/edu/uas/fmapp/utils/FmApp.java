@@ -3,6 +3,7 @@ package at.edu.uas.fmapp.utils;
 import java.util.List;
 
 import android.app.Application;
+import android.content.Intent;
 import at.edu.uas.fmapp.classes.WorkObject;
 import at.edu.uas.fmapp.classes.Worker;
 import at.edu.uas.fmapp.server.FmServiceProxy;
@@ -49,6 +50,9 @@ public class FmApp extends Application {
 
 	public void logout() {
 		setLoggedInPerson(null);
+		Intent broadcastIntent = new Intent();
+		broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+		sendBroadcast(broadcastIntent);
 	}
 
 }

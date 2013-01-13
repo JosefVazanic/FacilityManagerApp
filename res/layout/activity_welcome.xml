@@ -21,12 +21,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password" >
+
+        <requestFocus />
+    </EditText>
+
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/activity_welcome_login_button"
-        android:onClick="loadHomeLayout" />
+        android:onClick="login" />
 
     <Button
         android:id="@+id/button2"
