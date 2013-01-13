@@ -3,7 +3,6 @@ package at.edu.uas.fmapp;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,19 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import at.edu.uas.fmapp.classes.Worker;
 import at.edu.uas.fmapp.server.FmServiceExecutionListener;
-import at.edu.uas.fmapp.utils.FmApp;
 
-public class WelcomeActivity extends Activity {
-
-	FmApp appState;
+public class WelcomeActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-
-		appState = (FmApp) getApplicationContext();
-
+		
 		FmServiceExecutionListener<List<Worker>> executionListener = new FmServiceExecutionListener<List<Worker>>() {
 
 			@Override

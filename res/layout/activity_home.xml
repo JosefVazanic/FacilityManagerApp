@@ -9,30 +9,12 @@
     android:orientation="vertical"
     tools:context=".HomeActivity" >
 
-    <LinearLayout
+    <include layout="@layout/header"/>
+
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/loginName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false" />
-
-        <Button
-            android:id="@+id/logoutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="logout"
-            android:text="@string/logout_button" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp" >
+        android:orientation="vertical" >
 
         <Button
             android:id="@+id/button1"
@@ -40,6 +22,6 @@
             android:layout_height="wrap_content"
             android:onClick="loadObjectSearch"
             android:text="@string/activity_home_objecs" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
