@@ -34,13 +34,14 @@ public class FmServiceProxy {
 
 	public FmServiceProxy() {
 		boolean localTest = false; // set true to test with local server
-		xmlRpcClient = new XMLRPCClient(localTest ? LOCAL_SERVER_URL : SERVER_URL);
+		xmlRpcClient = new XMLRPCClient(localTest ? LOCAL_SERVER_URL
+				: SERVER_URL);
 	}
 
-	public void getWorkObjectList(Long userId,
+	public void getWorkObjectList(
 			FmServiceExecutionListener<List<WorkObject>> executionListener) {
-		executeServiceMethod(METHOD_GET_WORK_OBJECT_LIST,
-				new Object[] { userId }, executionListener);
+		executeServiceMethod(METHOD_GET_WORK_OBJECT_LIST, null,
+				executionListener);
 	}
 
 	public void getTaskList(

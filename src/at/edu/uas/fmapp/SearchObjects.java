@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import at.edu.uas.fmapp.classes.Address;
 import at.edu.uas.fmapp.classes.WorkObject;
+import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 
 public class SearchObjects extends BaseActivity {
 
@@ -66,9 +67,16 @@ public class SearchObjects extends BaseActivity {
 	}
 
 	public void searchQrCode(View v) {
-		List<WorkObject> result = createDummyData();
-		appState.setResult(result);
-		startActivity(new Intent(this, ResultObjects.class));
+		appState.getProxy().getWorkObjectList(
+				new FmServiceExecutionListener<List<WorkObject>>() {
+
+					@Override
+					public void onPostExecute(List<WorkObject> result) {
+						appState.setResult(result);
+						SearchObjects.this.startActivity(new Intent(
+								SearchObjects.this, ResultObjects.class));
+					}
+				});
 	}
 
 	public void searchLocation(View v) {
