@@ -39,11 +39,4 @@
         android:text="@string/activity_welcome_login_button"
         android:onClick="login" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To Test Main Activity"
-        android:onClick="loadMainLayout" />
-
 </LinearLayout>

@@ -11,9 +11,6 @@ public class Person extends BaseClass {
 	protected String phone;
 	protected String mobile;
 
-	public Person() {
-	}
-
 	public Person(Long id) {
 		super(id);
 	}

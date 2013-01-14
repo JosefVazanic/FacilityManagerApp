@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import at.edu.uas.fmapp.classes.Address;
 import at.edu.uas.fmapp.classes.WorkObject;
 
 public class SearchObjects extends BaseActivity {
@@ -59,25 +60,59 @@ public class SearchObjects extends BaseActivity {
 
 	public void searchAddress(View v) {
 		List<WorkObject> result = new ArrayList<WorkObject>();
-		result.add(new WorkObject(1l, "Objekt A", "Dorfgasse 12"));
+		result.add(createDummyData().get(0));
 		appState.setResult(result);
 		startActivity(new Intent(this, ResultObjects.class));
 	}
 
 	public void searchQrCode(View v) {
-		List<WorkObject> result = new ArrayList<WorkObject>();
-		result.add(new WorkObject(1l, "Objekt A", "Dorfgasse 12"));
-		result.add(new WorkObject(1l, "Objekt B", "MachSauber Straﬂe 99"));
-		result.add(new WorkObject(1l, "Objekt C", "Schmutzgasse 10"));
+		List<WorkObject> result = createDummyData();
 		appState.setResult(result);
 		startActivity(new Intent(this, ResultObjects.class));
 	}
 
 	public void searchLocation(View v) {
 		List<WorkObject> result = new ArrayList<WorkObject>();
-		result.add(new WorkObject(1l, "Objekt C", "Schmutzgasse 10"));
+		result.add(createDummyData().get(2));
 		appState.setResult(result);
 		startActivity(new Intent(this, ResultObjects.class));
+	}
+
+	private List<WorkObject> createDummyData() {
+		List<WorkObject> dummyList = new ArrayList<WorkObject>();
+		WorkObject dummy = null;
+
+		dummy = new WorkObject(1L);
+		dummy.setNumber("123");
+		dummy.setDescription("Objekt A");
+		dummy.setAddress(new Address(1L));
+		dummy.getAddress().setCity("Wien");
+		dummy.getAddress().setZipCode("1010");
+		dummy.getAddress().setStreet("Dorfgasse");
+		dummy.getAddress().setNumber("12");
+		dummyList.add(dummy);
+
+		dummy = new WorkObject(2L);
+		dummy.setNumber("555");
+		dummy.setDescription("Objekt B");
+		dummy.setAddress(new Address(2L));
+		dummy.getAddress().setCity("Wien");
+		dummy.getAddress().setZipCode("1130");
+		dummy.getAddress().setStreet("MachSauber Straﬂe");
+		dummy.getAddress().setNumber("99");
+		dummyList.add(dummy);
+
+		dummy = new WorkObject(3L);
+		dummy.setNumber("789");
+		dummy.setDescription("Objekt C");
+		dummy.setAddress(new Address(3L));
+		dummy.getAddress().setCity("Wien");
+		dummy.getAddress().setZipCode("1090");
+		dummy.getAddress().setStreet("Schmutzgasse");
+		dummy.getAddress().setNumber("10");
+		dummyList.add(dummy);
+
+		return dummyList;
 	}
 
 }

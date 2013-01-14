@@ -43,8 +43,8 @@ public class WorkObjectAdapter extends ArrayAdapter<WorkObject> {
 		}
 
 		WorkObject workObject = data[position];
-		holder.m_name.setText(workObject.getName());
-		holder.m_address.setText(workObject.getAddress());
+		holder.m_name.setText(workObject.toString());
+		holder.m_address.setText(workObject.getAddress().toString());
 
 		return row;
 	}

@@ -13,7 +13,7 @@ public class ObjectDetail extends BaseActivity {
 
 		initLogin();
 
-		setTitle(appState.getSelectedItem().getName() + " - "
+		setTitle(appState.getSelectedItem().getDescription() + " - "
 				+ appState.getSelectedItem().getAddress());
 
 	}

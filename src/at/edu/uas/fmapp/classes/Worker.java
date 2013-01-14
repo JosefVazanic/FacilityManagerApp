@@ -6,9 +6,6 @@ public class Worker extends Person {
 	protected Long latitude;
 	protected Long longitude;
 
-	public Worker() {
-	}
-
 	public Worker(Long id) {
 		super(id);
 	}

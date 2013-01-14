@@ -39,7 +39,7 @@ public class WelcomeActivity extends BaseActivity {
 			}
 		};
 
-		appState.getProxy().getWorkers(executionListener);
+		appState.getProxy().getWorkerList(executionListener);
 
 	}
 
@@ -75,10 +75,6 @@ public class WelcomeActivity extends BaseActivity {
 
 		appState.getProxy().authenticateWorker(selectedWorker,
 				textPassword.getText().toString(), executionListener);
-	}
-
-	public void loadMainLayout(View v) {
-		startActivity(new Intent(this, MainActivity.class));
 	}
 
 }

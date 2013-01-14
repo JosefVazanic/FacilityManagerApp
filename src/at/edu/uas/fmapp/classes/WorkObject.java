@@ -2,28 +2,51 @@ package at.edu.uas.fmapp.classes;
 
 public class WorkObject extends BaseClass {
 
-	private String name, address;
+	private String number;
+	private String description;
 
-	public WorkObject(Long id, String name, String address) {
+	private Address address;
+
+	private Person contactPerson;
+
+	public WorkObject(Long id) {
 		super(id);
-		this.name = name;
-		this.address = address;
 	}
 
-	public String getName() {
-		return name;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
-	public String getAddress() {
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
+	public Person getContactPerson() {
+		return contactPerson;
+	}
+
+	public void setContactPerson(Person contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+
+	@Override
+	public String toString() {
+		return number + ", " + description;
+	}
 }
