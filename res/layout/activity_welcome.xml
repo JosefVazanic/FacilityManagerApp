@@ -9,6 +9,12 @@
     android:orientation="vertical"
     tools:context=".WelcomeActivity" >
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="fill_parent"
@@ -16,10 +22,18 @@
         android:text="@string/activity_welcome_info"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Spinner
+    <!-- <Spinner
         android:id="@+id/loginSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" /> -->
+    
+    <EditText
+        android:id="@+id/textUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Username" />
 
     <EditText
         android:id="@+id/textPassword"
@@ -34,9 +48,9 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_welcome_login_button"
-        android:onClick="login" />
+        android:onClick="login"
+        android:text="@string/activity_welcome_login_button" />
 
 </LinearLayout>

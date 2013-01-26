@@ -10,6 +10,11 @@ public class Worker extends Person {
 		super(id);
 	}
 
+	public Worker(String userName) {
+		super();
+		this.userName = userName;
+	}
+	
 	public String getUserName() {
 		return userName;
 	}

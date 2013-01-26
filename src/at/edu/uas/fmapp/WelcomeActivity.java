@@ -7,35 +7,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 import at.edu.uas.fmapp.classes.Worker;
 import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 
 public class WelcomeActivity extends BaseActivity {
 
+//	ArrayAdapter<Worker> m_adapter;
+	private List<Worker> m_listWorker;
+	
+	private EditText m_username;
+	private EditText m_password;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
+		
+		m_username = (EditText) findViewById(R.id.textUsername);
+		m_password = (EditText) findViewById(R.id.textPassword);
+		
+		// TODO remove - its used for fast login during development
+		m_username.setText("TestWorker1");
+		m_password.setText("worker123");
 
 		FmServiceExecutionListener<List<Worker>> executionListener = new FmServiceExecutionListener<List<Worker>>() {
 
 			@Override
 			public void onPostExecute(List<Worker> result) {
 				// set values for login spinner
-				if (result == null) {
-					result = new ArrayList<Worker>();
+				m_listWorker = result;
+				if (m_listWorker == null) {
+					m_listWorker = new ArrayList<Worker>();
 				}
-				Spinner loginSpinner = (Spinner) findViewById(R.id.loginSpinner);
-				ArrayAdapter<Worker> adapter = new ArrayAdapter<Worker>(
-						getBaseContext(), android.R.layout.simple_spinner_item,
-						result);
-				adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-				loginSpinner.setAdapter(adapter);
-				loginSpinner.setSelection(Integer.parseInt("0"));
 			}
 		};
 
@@ -51,15 +56,18 @@ public class WelcomeActivity extends BaseActivity {
 	}
 
 	public void login(View v) {
-
-		Spinner loginspinner = (Spinner) findViewById(R.id.loginSpinner);
-		final Worker selectedWorker = (Worker) loginspinner.getSelectedItem();
 		FmServiceExecutionListener<Boolean> executionListener = new FmServiceExecutionListener<Boolean>() {
 
 			@Override
 			public void onPostExecute(Boolean result) {
 				// set values for login spinner
 				if (Boolean.TRUE.equals(result)) {
+					Worker selectedWorker = null;
+					for (Worker worker : m_listWorker) {
+						if(m_username.getText().toString().equals(worker.getUserName())) {
+							selectedWorker = worker;
+						}
+					}					
 					appState.setLoggedInPerson(selectedWorker);
 					startActivity(new Intent(WelcomeActivity.this,
 							HomeActivity.class));
@@ -71,10 +79,8 @@ public class WelcomeActivity extends BaseActivity {
 			}
 		};
 
-		EditText textPassword = (EditText) findViewById(R.id.textPassword);
-
-		appState.getProxy().authenticateWorker("TestWorker1",
-				textPassword.getText().toString(), executionListener);
+		appState.getProxy().authenticateWorker(m_username.getText().toString(),
+				m_password.getText().toString(), executionListener);
 	}
 
 }

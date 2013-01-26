@@ -11,6 +11,10 @@ public class Person extends BaseClass {
 	protected String phone;
 	protected String mobile;
 
+	public Person() {
+		super();
+	}
+	
 	public Person(Long id) {
 		super(id);
 	}
