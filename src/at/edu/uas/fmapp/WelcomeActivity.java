@@ -73,7 +73,7 @@ public class WelcomeActivity extends BaseActivity {
 
 		EditText textPassword = (EditText) findViewById(R.id.textPassword);
 
-		appState.getProxy().authenticateWorker(selectedWorker,
+		appState.getProxy().authenticateWorker("TestWorker1",
 				textPassword.getText().toString(), executionListener);
 	}
 

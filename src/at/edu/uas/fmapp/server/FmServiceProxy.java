@@ -60,11 +60,10 @@ public class FmServiceProxy {
 		executeServiceMethod(METHOD_GET_WORKER_LIST, null, executionListener);
 	}
 
-	public void authenticateWorker(Worker worker, String password,
+	public void authenticateWorker(String username, String password,
 			FmServiceExecutionListener<Boolean> executionListener) {
-		executeServiceMethod(METHOD_AUTHENTICATE, new Object[] {
-				worker.getId(), worker.getUserName(), password },
-				executionListener);
+		executeServiceMethod(METHOD_AUTHENTICATE, new Object[] { username,
+				password }, executionListener);
 	}
 
 	public void insertWorkItem(WorkItem workItem,
