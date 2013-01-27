@@ -1,4 +1,4 @@
-package at.edu.uas.fmapp.classes;
+package at.edu.uas.fmapp.entity;
 
 public class AdditionalWorkItem extends BaseClass {
 

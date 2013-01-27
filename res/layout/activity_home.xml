@@ -1,27 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/textView1"
-    android:layout_alignParentLeft="true"
-    android:layout_marginBottom="86dp"
-    android:layout_marginLeft="30dp"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".HomeActivity" >
 
-    <include layout="@layout/header"/>
-
-    <RelativeLayout
+    <TextView
+        android:id="@+id/home_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:textSize="25sp" />
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="loadObjectSearch"
-            android:text="@string/activity_home_objecs" />
-    </RelativeLayout>
+    <Button
+        android:id="@+id/button_all_objects"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="onAllObjectsClick"
+        android:text="@string/activity_home_button_all_objects"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button_find_object"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="onFindObjectClick"
+        android:text="@string/activity_home_button_find_object"
+        android:textSize="30sp" />
 
 </LinearLayout>

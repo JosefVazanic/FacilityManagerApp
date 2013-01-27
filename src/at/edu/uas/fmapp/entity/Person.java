@@ -1,4 +1,4 @@
-package at.edu.uas.fmapp.classes;
+package at.edu.uas.fmapp.entity;
 
 import java.util.Date;
 

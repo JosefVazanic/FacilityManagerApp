@@ -9,8 +9,6 @@
     android:orientation="vertical"
     tools:context=".ObjectDetail" >
 
-    <include layout="@layout/header" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >

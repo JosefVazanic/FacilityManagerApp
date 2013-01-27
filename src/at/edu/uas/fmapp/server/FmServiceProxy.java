@@ -7,14 +7,14 @@ import java.util.List;
 import org.xmlrpc.android.XMLRPCClient;
 
 import android.os.AsyncTask;
-import at.edu.uas.fmapp.classes.AdditionalWorkItem;
-import at.edu.uas.fmapp.classes.Address;
-import at.edu.uas.fmapp.classes.Person;
-import at.edu.uas.fmapp.classes.Task;
-import at.edu.uas.fmapp.classes.TaskAssignment;
-import at.edu.uas.fmapp.classes.WorkItem;
-import at.edu.uas.fmapp.classes.WorkObject;
-import at.edu.uas.fmapp.classes.Worker;
+import at.edu.uas.fmapp.entity.AdditionalWorkItem;
+import at.edu.uas.fmapp.entity.Address;
+import at.edu.uas.fmapp.entity.Person;
+import at.edu.uas.fmapp.entity.Task;
+import at.edu.uas.fmapp.entity.TaskAssignment;
+import at.edu.uas.fmapp.entity.WorkItem;
+import at.edu.uas.fmapp.entity.WorkObject;
+import at.edu.uas.fmapp.entity.Worker;
 
 public class FmServiceProxy {
 

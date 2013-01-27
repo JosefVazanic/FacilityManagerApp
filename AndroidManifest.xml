@@ -30,27 +30,27 @@
             android:label="@string/activity_home_title" >
         </activity>
         <activity
-            android:name="at.edu.uas.fmapp.SearchObjects"
-            android:label="@string/activity_search_objects_title" >
+            android:name="at.edu.uas.fmapp.SearchObjectActivity"
+            android:label="@string/activity_search_object_title" >
         </activity>
         <activity
-            android:name="at.edu.uas.fmapp.ResultObjects"
-            android:label="@string/activity_result_objects_title" >
+            android:name="at.edu.uas.fmapp.SearchObjectResultActivity"
+            android:label="@string/activity_search_object_result_title" >
         </activity>
         <activity
-            android:name="at.edu.uas.fmapp.ObjectDetail"
+            android:name="at.edu.uas.fmapp.ObjectDetailActivity"
             android:label="@string/activity_object_detail_title" >
         </activity>
         <activity
-            android:name="at.edu.uas.fmapp.ResultObjectsWay"
+            android:name="at.edu.uas.fmapp.ObjectsRouteActivity"
             android:label="@string/activity_result_objects_way_title" >
         </activity>
         <activity
-            android:name="at.edu.uas.fmapp.ResultObjectsInformation"
+            android:name="at.edu.uas.fmapp.ObjectInformationActivity"
             android:label="@string/activity_result_objects_information_title" >
         </activity>
         <activity
-            android:name="at.edu.uas.fmapp.ResultObjectsTasks"
+            android:name="at.edu.uas.fmapp.ObjectTasksActivity"
             android:label="@string/activity_result_objects_tasks_title" >
         </activity>
     </application>

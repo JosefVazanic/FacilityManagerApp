@@ -7,9 +7,7 @@
     android:layout_marginBottom="86dp"
     android:layout_marginLeft="30dp"
     android:orientation="vertical"
-    tools:context=".ResultObjectsTasks" >
-
-    <include layout="@layout/header" />
+    tools:context=".ResultObjectsInformation" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="Your Tasks" />
+                android:text="Informations" />
         </LinearLayout>
     </RelativeLayout>
 

@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class ObjectDetail extends BaseActivity {
+public class ObjectDetailActivity extends LoggedInBaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_object_detail);
-
-		initLogin();
 
 		setTitle(appState.getSelectedItem().getDescription() + " - "
 				+ appState.getSelectedItem().getAddress());
@@ -19,15 +17,15 @@ public class ObjectDetail extends BaseActivity {
 	}
 	
 	public void loadWay(View v) {
-		startActivity(new Intent(this, ResultObjectsWay.class));
+		startActivity(new Intent(this, ObjectsRouteActivity.class));
 	}
 
 	public void loadInformation(View v) {
-		startActivity(new Intent(this, ResultObjectsInformation.class));
+		startActivity(new Intent(this, ObjectInformationActivity.class));
 	}
 
 	public void loadTasks(View v) {
-		startActivity(new Intent(this, ResultObjectsTasks.class));
+		startActivity(new Intent(this, ObjectTasksActivity.class));
 	}
 	
 }
