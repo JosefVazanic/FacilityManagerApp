@@ -27,7 +27,8 @@ public class FmServiceProxy {
 	private static final String METHOD_GET_TASK_ASSIGNMENT_LIST = "getTaskAssignmentList";
 	private static final String METHOD_GET_WORKER_LIST = "getWorkerList";
 	private static final String METHOD_AUTHENTICATE = "authenticate";
-	private static final String METHOD_INSERT_WORK_ITEM = "insertWorkItem";
+	private static final String METHOD_GET_WORK_ITEM_LIST_FOR_ASSIGNMENTS = "getWorkItemListForAssignments";
+	private static final String METHOD_INSERT_OR_UPDATE_WORK_ITEM = "insertOrUpdateWorkItem";
 	private static final String METHOD_INSERT_ADDITIONAL_WORK_ITEM = "insertAdditionalWorkItem";
 
 	private XMLRPCClient xmlRpcClient;
@@ -40,8 +41,8 @@ public class FmServiceProxy {
 
 	public void getWorkObjectList(Long userId,
 			FmServiceExecutionListener<List<WorkObject>> executionListener) {
-		executeServiceMethod(METHOD_GET_WORK_OBJECT_LIST, new Object[] { userId },
-				executionListener);
+		executeServiceMethod(METHOD_GET_WORK_OBJECT_LIST,
+				new Object[] { userId }, executionListener);
 	}
 
 	public void getTaskList(
@@ -66,13 +67,23 @@ public class FmServiceProxy {
 				password }, executionListener);
 	}
 
-	public void insertWorkItem(WorkItem workItem,
-			FmServiceExecutionListener<Boolean> executionListener) {
-		executeServiceMethod(
-				METHOD_INSERT_WORK_ITEM,
-				new Object[] { workItem.getTaskAssignmentId(),
-						workItem.getStatus(), workItem.getDate() },
-				executionListener);
+	public void getWorkItemListForAssignments(
+			List<TaskAssignment> taskAssignments,
+			FmServiceExecutionListener<List<WorkItem>> executionListener) {
+		List<Object> taskAssignmendIds = new ArrayList<Object>();
+		for (TaskAssignment taskAssignment : taskAssignments) {
+			taskAssignmendIds.add(taskAssignment.getId());
+		}
+		executeServiceMethod(METHOD_GET_WORK_ITEM_LIST_FOR_ASSIGNMENTS,
+				taskAssignmendIds.toArray(new Object[0]), executionListener);
+	}
+
+	public void insertOrUpdateWorkItem(WorkItem workItem,
+			FmServiceExecutionListener<WorkItem> executionListener) {
+		executeServiceMethod(METHOD_INSERT_OR_UPDATE_WORK_ITEM,
+				new Object[] { workItem.getId(),
+						workItem.getTaskAssignmentId(), workItem.getStatus(),
+						workItem.getDate() }, executionListener);
 	}
 
 	public void insertAdditionalWorkItem(AdditionalWorkItem additionalWorkItem,
@@ -202,8 +213,38 @@ public class FmServiceProxy {
 
 			result = workerList;
 
+		} else if (methodName.equals(METHOD_GET_WORK_ITEM_LIST_FOR_ASSIGNMENTS)) {
+
+			List<WorkItem> workeItemList = new ArrayList<WorkItem>();
+
+			for (Object workItemDataObject : (Object[]) serviceResult) {
+
+				Object[] workItemData = (Object[]) workItemDataObject;
+
+				WorkItem workItem = new WorkItem();
+				workItem.setId((Long) workItemData[0]);
+				workItem.setTaskAssignmentId((Long) workItemData[1]);
+				workItem.setStatus((String) workItemData[2]);
+				workItem.setDate((Date) workItemData[3]);
+
+				workeItemList.add(workItem);
+			}
+
+			result = workeItemList;
+
+		} else if (methodName.equals(METHOD_INSERT_OR_UPDATE_WORK_ITEM)) {
+
+			Object[] workItemData = (Object[]) serviceResult;
+
+			WorkItem workItem = new WorkItem();
+			workItem.setId((Long) workItemData[0]);
+			workItem.setTaskAssignmentId((Long) workItemData[1]);
+			workItem.setStatus((String) workItemData[2]);
+			workItem.setDate((Date) workItemData[3]);
+
+			result = workItem;
+
 		} else if (methodName.equals(METHOD_AUTHENTICATE)
-				|| methodName.equals(METHOD_INSERT_WORK_ITEM)
 				|| methodName.equals(METHOD_INSERT_ADDITIONAL_WORK_ITEM)) {
 
 			result = Boolean.TRUE.equals(serviceResult);
