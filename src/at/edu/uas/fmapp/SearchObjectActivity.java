@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -20,9 +21,12 @@ import at.edu.uas.fmapp.entity.WorkObject;
 import at.edu.uas.fmapp.utils.FmHelper;
 import at.edu.uas.fmapp.utils.GeoUtils;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 public class SearchObjectActivity extends LoggedInBaseActivity {
 
-	private static final double SEARCH_RADIUS = 2;
+	private static final double SEARCH_RADIUS_IN_KM = 2;
 
 	private RadioGroup radioButtonGroupMode;
 	private LinearLayout layoutAddress;
@@ -33,7 +37,7 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 
 	private LocationListener locationListener = null;
 	private Location lastLocation;
-	private Long lastQrCodeId;
+	private Long lastQrCodeWorkObjectId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		setCheckedRadioButton(radioButtonGroupMode.getCheckedRadioButtonId());
 		requestLocationUpdates();
 	}
 
@@ -53,6 +58,18 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 	protected void onStop() {
 		super.onStop();
 		stopLocationUpdates();
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		// handle scan result if there's one
+		IntentResult scanResult = IntentIntegrator.parseActivityResult(
+				requestCode, resultCode, intent);
+		if (scanResult != null) {
+			// process content of scan and trigger search
+			processQrScanResult(scanResult.getContents());
+			searchObjects(SearchMode.QR_CODE);
+		}
 	}
 
 	private void initLayout() {
@@ -65,8 +82,7 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 		textZipCode = (EditText) findViewById(R.id.text_postal_code);
 	}
 
-	private void init() {
-		setCheckedRadioButton(-1);
+	private void init() {		
 		Location lastGpsLocation = getLocationManager().getLastKnownLocation(
 				LocationManager.GPS_PROVIDER);
 		Location lastNetworkLocation = getLocationManager()
@@ -125,7 +141,10 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 	}
 
 	public void searchByQrCode(View view) {
-		searchObjects(SearchMode.QR_CODE);
+		IntentIntegrator integrator = new IntentIntegrator(this);
+		integrator.initiateScan();
+
+		// searchObjects(SearchMode.QR_CODE);
 	}
 
 	public void searchByLocation(View view) {
@@ -170,7 +189,8 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 
 		case QR_CODE:
 
-			return workObject.getId().equals(lastQrCodeId);
+			// compare scanned id with id of work object
+			return workObject.getId().equals(lastQrCodeWorkObjectId);
 
 		case LOCATION:
 
@@ -183,7 +203,7 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 					GeoUtils.convertCoordinateToFloat(address.getLatitude()),
 					GeoUtils.convertCoordinateToFloat(address.getLongitude()));
 
-			return distance <= SEARCH_RADIUS;
+			return distance <= SEARCH_RADIUS_IN_KM;
 
 		}
 
@@ -226,6 +246,33 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 
 	private LocationManager getLocationManager() {
 		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	}
+
+	private void processQrScanResult(String scanResult) {
+		lastQrCodeWorkObjectId = null;
+
+		// parse code scan result
+		if (FmHelper.isNullOrEmpty(scanResult)) {
+			return;
+		}
+		String[] qrCodeParts = scanResult.split(";");
+		if (qrCodeParts != null && qrCodeParts.length < 2) {
+			return;
+		}
+		String scannedWorkObjectIdString = qrCodeParts[0];
+		if (FmHelper.isNullOrEmpty(scannedWorkObjectIdString)) {
+			return;
+		}
+
+		// convert scanned it to long value
+		Long scannedWorkObjectId = null;
+		try {
+			scannedWorkObjectId = Long.valueOf(scannedWorkObjectIdString);
+		} catch (Exception e) {
+			Log.d("Scanned work object id convert error", e.getMessage());
+		}
+
+		lastQrCodeWorkObjectId = scannedWorkObjectId;
 	}
 
 	private static enum SearchMode {

@@ -38,6 +38,7 @@
     <string name="activity_search_object_validation_title">Validation</string>
     <string name="activity_search_object_validation_address_input">Please fill at least one of the requested field</string>
     <string name="activity_search_object_location_search_info">Scan the near area (2 km) around your current position.</string>
+    <string name="activity_search_object_qr_code_search_info">Scan a QR code to find an object.</string>
     <string name="activity_search_object_result_title">Objects</string>
     <string name="activity_search_object_result_empty_list">No objects were found.</string>
     <string name="activity_search_object_result_object_number_header">Number</string>
