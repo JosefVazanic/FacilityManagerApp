@@ -50,4 +50,8 @@
     <string name="activity_search_object_result_object_number_header">Number</string>
     <string name="activity_search_object_result_object_name_header">Description</string>
     
+    <string name="activity_task_list_name_header" >Task</string>
+    <string name="activity_task_list_state_header" >State</string>
+    
+    
 </resources>

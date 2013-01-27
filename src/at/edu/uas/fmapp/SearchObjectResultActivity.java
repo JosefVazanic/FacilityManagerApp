@@ -1,5 +1,7 @@
 package at.edu.uas.fmapp;
 
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +9,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import at.edu.uas.fmapp.entity.Task;
+import at.edu.uas.fmapp.entity.TaskAssignment;
 import at.edu.uas.fmapp.entity.WorkObject;
+import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 import at.edu.uas.fmapp.utils.WorkObjectAdapter;
 
 public class SearchObjectResultActivity extends LoggedInBaseActivity {
@@ -27,7 +32,8 @@ public class SearchObjectResultActivity extends LoggedInBaseActivity {
 		setContentView(R.layout.activity_search_object_result);
 		objectListView = (ListView) findViewById(R.id.objectResultListView);
 		emptyListTextView = (TextView) findViewById(R.id.textEmptyObjectResultList);
-		listHeaderView = View.inflate(this, R.layout.object_list_header_view, null);
+		listHeaderView = View.inflate(this, R.layout.object_list_header_view,
+				null);
 	}
 
 	private void init() {
@@ -44,7 +50,7 @@ public class SearchObjectResultActivity extends LoggedInBaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				loadDetail(appState.getWorkObjectSearchResult().get(position));
+				loadDetail(appState.getWorkObjectSearchResult().get(--position));
 			}
 
 		});
@@ -52,6 +58,23 @@ public class SearchObjectResultActivity extends LoggedInBaseActivity {
 
 	public void loadDetail(WorkObject selectedObject) {
 		appState.setSelectedItem(selectedObject);
+		FmServiceExecutionListener<List<Task>> executionListener = new FmServiceExecutionListener<List<Task>>() {
+			@Override
+			public void onPostExecute(List<Task> result) {
+				appState.setAllTasks(result);
+			}
+		};
+		appState.getProxy().getTaskList(executionListener);
+		FmServiceExecutionListener<List<TaskAssignment>> executionListenerTaskAssignment = new FmServiceExecutionListener<List<TaskAssignment>>() {
+			@Override
+			public void onPostExecute(List<TaskAssignment> result) {
+				appState.setUserTasksAssignments(result);
+			}
+		};
+		appState.getProxy().getTaskAssignmentList(
+				appState.getLoggedInPerson().getId(),
+				executionListenerTaskAssignment);
+
 		startActivity(new Intent(this, ObjectDetailActivity.class));
 	}
 }

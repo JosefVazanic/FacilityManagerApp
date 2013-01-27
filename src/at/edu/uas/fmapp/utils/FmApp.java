@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.app.Application;
 import android.content.Intent;
+import at.edu.uas.fmapp.entity.Task;
+import at.edu.uas.fmapp.entity.TaskAssignment;
 import at.edu.uas.fmapp.entity.WorkObject;
 import at.edu.uas.fmapp.entity.Worker;
 import at.edu.uas.fmapp.server.FmServiceProxy;
@@ -16,6 +18,8 @@ public class FmApp extends Application {
 	private Worker loggedInPerson;
 	private List<WorkObject> allWorkObjects;
 	private List<WorkObject> workObjectSearchResult;
+	private List<Task> taskList;
+	private List<TaskAssignment> userTaskAssignments;
 	private WorkObject selectedItem;
 
 	private FmServiceProxy proxy;
@@ -51,10 +55,6 @@ public class FmApp extends Application {
 		this.workObjectSearchResult = workObjectsSearchResult;
 	}
 
-	public void setProxy(FmServiceProxy proxy) {
-		this.proxy = proxy;
-	}
-
 	public WorkObject getSelectedItem() {
 		return selectedItem;
 	}
@@ -66,7 +66,23 @@ public class FmApp extends Application {
 	public FmServiceProxy getProxy() {
 		return proxy;
 	}
+	
+	public List<Task> getAllTasks() {
+		return taskList;
+	}
+	
+	public void setAllTasks(List<Task> result) {
+		this.taskList = result;
+	}
 
+	public List<TaskAssignment> getUserTasksAssignments() {
+		return userTaskAssignments;
+	}
+
+	public void setUserTasksAssignments(List<TaskAssignment> result) {
+		this.userTaskAssignments = result;
+	}
+	
 	public void logout() {
 		setLoggedInPerson(null);
 		Intent broadcastIntent = new Intent();

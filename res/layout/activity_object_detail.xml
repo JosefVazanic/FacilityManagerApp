@@ -20,24 +20,30 @@
 
             <Button
                 android:id="@+id/buttonInformation"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:onClick="loadInformation"
-                android:text="@string/activity_object_detail_button_information" />
+                android:text="@string/activity_object_detail_button_information"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/buttonWay"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:onClick="loadWay"
-                android:text="@string/activity_object_detail_button_way" />
+                android:text="@string/activity_object_detail_button_way"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/buttonTasks"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:onClick="loadTasks"
-                android:text="@string/activity_object_detail_button_tasks" />
+                android:text="@string/activity_object_detail_button_tasks"
+                android:textSize="30sp" />
         </LinearLayout>
     </RelativeLayout>
 
