@@ -2,10 +2,14 @@ package at.edu.uas.fmapp.utils;
 
 import android.location.Location;
 
+import com.google.android.maps.GeoPoint;
+
 public class GeoUtils {
 
 	/** Radius of the earth in kilometers. */
 	public static final double EARTH_RADIUS = 6367;
+
+	public static final double ONE_MILLION = 1E6;
 
 	private static final int TWO_MINUTES = 1000 * 60 * 2;
 
@@ -55,6 +59,9 @@ public class GeoUtils {
 		if (currentBestLocation == null) {
 			// A new location is always better than no location
 			return true;
+		} else if (location == null) {
+			// The old location is always better than no location
+			return false;
 		}
 
 		// Check whether the new location fix is newer or older
@@ -104,5 +111,22 @@ public class GeoUtils {
 			return provider2 == null;
 		}
 		return provider1.equals(provider2);
+	}
+
+	/**
+	 * Converts a coordinate (latitude or longitude) from its integer
+	 * representation to its float representation.
+	 * 
+	 * 48239573 -> 48.239573
+	 * 
+	 * @param coordinate
+	 * @return
+	 */
+	public static double convertCoordinateToFloat(double coordinate) {
+		return coordinate / ONE_MILLION;
+	}
+
+	public static double getLongitudeFromGeoPoint(GeoPoint geoPoint) {
+		return geoPoint.getLongitudeE6() / ONE_MILLION;
 	}
 }

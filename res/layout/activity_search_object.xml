@@ -59,7 +59,8 @@
         android:id="@+id/layout_address"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="gone" >
 
         <EditText
             android:id="@+id/text_street"
@@ -83,8 +84,11 @@
 
         <Button
             android:id="@+id/button_search_address"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:onClick="searchByAddress"
             android:text="@string/activity_search_object_button_search" />
     </LinearLayout>
@@ -107,19 +111,23 @@
         android:id="@+id/layout_location"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="gone" >
         
         <TextView
             android:id="@+id/label_location_search_info"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_search_object_location_search_info"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
         
         <Button
             android:id="@+id/button_search_location"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:onClick="searchByLocation"
             android:text="@string/activity_search_object_button_scan" />
     </LinearLayout>

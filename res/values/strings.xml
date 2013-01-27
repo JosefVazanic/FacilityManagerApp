@@ -46,5 +46,8 @@
     <string name="activity_search_object_location_search_info">Scan the near area (2 km) around your current position.</string>
     
     <string name="activity_search_object_result_title">Objects</string>
+    <string name="activity_search_object_result_empty_list">No objects were found.</string>
+    <string name="activity_search_object_result_object_number_header">Number</string>
+    <string name="activity_search_object_result_object_name_header">Description</string>
     
 </resources>

@@ -46,7 +46,8 @@ public class HomeActivity extends LoggedInBaseActivity {
 			}
 		};
 
-		appState.getProxy().getWorkObjectList(executionListener);
+		appState.getProxy().getWorkObjectList(
+				appState.getLoggedInPerson().getId(), executionListener);
 	}
 
 	public void onAllObjectsClick(View v) {

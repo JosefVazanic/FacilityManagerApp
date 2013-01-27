@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,6 +31,7 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 	private EditText textStreet;
 	private EditText textZipCode;
 
+	private LocationListener locationListener = null;
 	private Location lastLocation;
 	private Long lastQrCodeId;
 
@@ -37,6 +41,18 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 		initLayout();
 		init();
 
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		requestLocationUpdates();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		stopLocationUpdates();
 	}
 
 	private void initLayout() {
@@ -51,7 +67,16 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 
 	private void init() {
 		setCheckedRadioButton(-1);
+		Location lastGpsLocation = getLocationManager().getLastKnownLocation(
+				LocationManager.GPS_PROVIDER);
+		Location lastNetworkLocation = getLocationManager()
+				.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
+		if (GeoUtils.isBetterLocation(lastGpsLocation, lastNetworkLocation)) {
+			lastLocation = lastGpsLocation;
+		} else {
+			lastLocation = lastNetworkLocation;
+		}
 	}
 
 	public void checkRadioButton(View v) {
@@ -136,7 +161,8 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 				zipMatches = address.getZipCode().equals(zipCode);
 			}
 			if (!FmHelper.isNullOrEmpty(street)) {
-				streetMatches = address.getStreet().toLowerCase(Locale.getDefault())
+				streetMatches = address.getStreet()
+						.toLowerCase(Locale.getDefault())
 						.contains(street.toLowerCase(Locale.getDefault()));
 			}
 
@@ -154,7 +180,8 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 
 			double distance = GeoUtils.calculateHaversineDistance(
 					lastLocation.getLatitude(), lastLocation.getLongitude(),
-					address.getLatitude(), address.getLongitude());
+					GeoUtils.convertCoordinateToFloat(address.getLatitude()),
+					GeoUtils.convertCoordinateToFloat(address.getLongitude()));
 
 			return distance <= SEARCH_RADIUS;
 
@@ -168,7 +195,63 @@ public class SearchObjectActivity extends LoggedInBaseActivity {
 		startActivity(new Intent(this, SearchObjectResultActivity.class));
 	}
 
+	private void requestLocationUpdates() {
+		// register location listener for updates every 1 second & 500 meter
+		LocationManager locationManager = getLocationManager();
+
+		locationListener = new CurrentLocationListener();
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			locationManager.requestLocationUpdates(
+					LocationManager.GPS_PROVIDER, 1000, 500, locationListener);
+		}
+		if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+			locationManager.requestLocationUpdates(
+					LocationManager.NETWORK_PROVIDER, 1000, 500,
+					locationListener);
+		}
+	}
+
+	private void stopLocationUpdates() {
+		// stop requesting location updates
+		getLocationManager().removeUpdates(locationListener);
+	}
+
+	private void updateLocation(Location location) {
+		// no update necessary if last known location is
+		// more precise than received location.
+		if (GeoUtils.isBetterLocation(location, lastLocation)) {
+			lastLocation = location;
+		}
+	}
+
+	private LocationManager getLocationManager() {
+		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	}
+
 	private static enum SearchMode {
 		ADDRESS, QR_CODE, LOCATION
+	}
+
+	private class CurrentLocationListener implements LocationListener {
+
+		@Override
+		public void onLocationChanged(Location location) {
+			updateLocation(location);
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+			// nothing to do
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+			// nothing to do
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			// nothing to do
+		}
 	}
 }

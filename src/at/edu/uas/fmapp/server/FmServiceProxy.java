@@ -38,9 +38,9 @@ public class FmServiceProxy {
 				: SERVER_URL);
 	}
 
-	public void getWorkObjectList(
+	public void getWorkObjectList(Long userId,
 			FmServiceExecutionListener<List<WorkObject>> executionListener) {
-		executeServiceMethod(METHOD_GET_WORK_OBJECT_LIST, null,
+		executeServiceMethod(METHOD_GET_WORK_OBJECT_LIST, new Object[] { userId },
 				executionListener);
 	}
 

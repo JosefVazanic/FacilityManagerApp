@@ -52,7 +52,7 @@ public class WorkObjectAdapter extends ArrayAdapter<WorkObject> {
 		holder.name.setText(workObject.getDescription());
 		Address address = workObject.getAddress();
 		holder.addressLine1.setText(address.getStreet() + " "
-				+ address.getNumber());
+				+ address.getNumber() + ", ");
 		holder.addressLine2.setText(address.getZipCode() + " "
 				+ address.getCity());
 
