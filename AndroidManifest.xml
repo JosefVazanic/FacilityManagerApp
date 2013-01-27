@@ -54,6 +54,10 @@
             android:name="at.edu.uas.fmapp.ObjectTasksActivity"
             android:label="@string/activity_result_objects_tasks_title" >
         </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.NewObjectTask"
+            android:label="@string/title_activity_new_object_task" >
+        </activity>
     </application>
 
 </manifest>

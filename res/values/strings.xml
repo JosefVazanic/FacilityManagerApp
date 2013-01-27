@@ -12,13 +12,9 @@
     <string name="activity_result_objects_information_back_to_object">Back to Object</string>
     <string name="activity_result_objects_tasks_title">Your Tasks</string>
     <string name="activity_result_objects_tasks_back_to_object">Back to Object</string>
-
-    
-    
     <string name="app_name">Facility Manager</string>
     <string name="menu_item_home">Home</string>
     <string name="menu_item_logout">Logout</string>
-    
     <string name="activity_welcome_title">FacilityManager</string>
     <string name="activity_welcome_message">Login to use\nFacility Manager!</string>
     <string name="activity_welcome_label_username">Username</string>
@@ -26,12 +22,10 @@
     <string name="activity_welcome_button_login">Login</string>
     <string name="activity_welcome_logo_description">Facility Manager Logo</string>
     <string name="activity_welcome_logout_message">You successfully logged out!</string>
-    
     <string name="activity_home_title">Home</string>
     <string name="activity_home_button_all_objects">All objects</string>
     <string name="activity_home_button_find_object">Find object...</string>
     <string name="activity_home_message">%1$s %2$s</string>
-    
     <string name="activity_search_object_title">Search your objects</string>
     <string name="activity_search_object_find_by">Find by</string>
     <string name="activity_search_object_by_address">Address</string>
@@ -44,14 +38,14 @@
     <string name="activity_search_object_validation_title">Validation</string>
     <string name="activity_search_object_validation_address_input">Please fill at least one of the requested field</string>
     <string name="activity_search_object_location_search_info">Scan the near area (2 km) around your current position.</string>
-    
     <string name="activity_search_object_result_title">Objects</string>
     <string name="activity_search_object_result_empty_list">No objects were found.</string>
     <string name="activity_search_object_result_object_number_header">Number</string>
     <string name="activity_search_object_result_object_name_header">Description</string>
-    
-    <string name="activity_task_list_name_header" >Task</string>
-    <string name="activity_task_list_state_header" >State</string>
-    
-    
+    <string name="activity_task_list_name_header">Task</string>
+    <string name="activity_task_list_state_header">State</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_new_object_task">NewObjectTask</string>
+
 </resources>
