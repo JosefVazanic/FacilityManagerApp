@@ -214,7 +214,6 @@ public class ObjectsRouteActivity extends MapActivity {
 			mapView.getController().setZoom(14);
 			mapView.getOverlays().add(myLocationOverlay);
 			myLocationOverlay.setFollowing(true);
-			
 			// display route
 			displayRoute(myLocationOverlay.getMyLocation(), workObjectGeoPoint);
 		}
