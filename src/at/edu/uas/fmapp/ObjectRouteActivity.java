@@ -29,7 +29,7 @@ import com.mapquest.android.maps.RouteManager;
 import com.mapquest.android.maps.RouteResponse;
 import com.mapquest.android.maps.ServiceResponse.Info;
 
-public class ObjectsRouteActivity extends MapActivity {
+public class ObjectRouteActivity extends MapActivity {
 
 	private FmApp appState;
 

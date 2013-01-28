@@ -46,7 +46,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal" >
 
         <ImageView
@@ -54,16 +54,16 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_gravity="top"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             android:contentDescription="@string/activity_welcome_logo_description"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/fm_logo" />
 
         <Button
             android:id="@+id/button_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
+            android:layout_marginTop="-6dp"
             android:onClick="login"
             android:text="@string/activity_welcome_button_login" />
     </LinearLayout>

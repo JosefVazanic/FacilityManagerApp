@@ -3,6 +3,7 @@ package at.edu.uas.fmapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class ObjectDetailActivity extends LoggedInBaseActivity {
 
@@ -10,14 +11,14 @@ public class ObjectDetailActivity extends LoggedInBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_object_detail);
-
-		setTitle(appState.getSelectedItem().getDescription() + " - "
-				+ appState.getSelectedItem().getAddress());
+		
+		TextView textObjectName = (TextView) findViewById(R.id.text_object_name);
+		textObjectName.setText(appState.getSelectedItem().getDescription());
 
 	}
 	
-	public void loadWay(View v) {
-		startActivity(new Intent(this, ObjectsRouteActivity.class));
+	public void loadRoute(View v) {
+		startActivity(new Intent(this, ObjectRouteActivity.class));
 	}
 
 	public void loadInformation(View v) {

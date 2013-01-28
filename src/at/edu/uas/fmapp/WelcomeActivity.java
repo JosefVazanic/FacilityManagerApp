@@ -71,7 +71,8 @@ public class WelcomeActivity extends Activity {
 					startActivity(new Intent(WelcomeActivity.this,
 							HomeActivity.class));
 				} else {
-					Toast.makeText(getBaseContext(), "password invalid",
+					Toast.makeText(getBaseContext(),
+							R.string.activity_welcome_login_failed_message,
 							Toast.LENGTH_LONG).show();
 				}
 

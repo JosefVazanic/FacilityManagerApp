@@ -43,12 +43,12 @@
             android:label="@string/activity_object_detail_title" >
         </activity>
         <activity
-            android:name="at.edu.uas.fmapp.ObjectsRouteActivity"
+            android:name="at.edu.uas.fmapp.ObjectRouteActivity"
             android:label="@string/activity_object_route_title" >
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.ObjectInformationActivity"
-            android:label="@string/activity_result_objects_information_title" >
+            android:label="@string/activity_object_information_title" >
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.ObjectTasksActivity"
