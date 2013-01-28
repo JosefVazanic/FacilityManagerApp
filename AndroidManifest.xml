@@ -44,7 +44,7 @@
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.ObjectsRouteActivity"
-            android:label="@string/activity_result_objects_way_title" >
+            android:label="@string/activity_object_route_title" >
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.ObjectInformationActivity"

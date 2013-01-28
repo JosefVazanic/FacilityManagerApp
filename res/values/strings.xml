@@ -6,8 +6,6 @@
     <string name="activity_object_detail_button_information">Information</string>
     <string name="activity_object_detail_button_tasks">Your Tasks</string>
     <string name="activity_object_detail_back_to_result">Back To Result</string>
-    <string name="activity_result_objects_way_title">Way to Object</string>
-    <string name="activity_result_objects_way_back_to_object">Back to Object</string>
     <string name="activity_result_objects_information_title">Information</string>
     <string name="activity_result_objects_information_back_to_object">Back to Object</string>
     <string name="activity_result_objects_tasks_title">Your Tasks</string>
@@ -49,5 +47,10 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_new_object_task">NewObjectTask</string>
     <string name="title_activity_detail_object_task">DetailObjectTask</string>
+    <string name="activity_object_route_title">Object route</string>
+    <string name="activity_object_route_error">Unable to create route.\nError: %1$d\nMessage: %1$s</string>
+    <string name="activity_object_route_mapquest_api_key">Kmjtd%7Cluu22gurnq%2Can%3Do5-gzrl</string>
+    <string name="activity_object_route_button_show_route">Show route</string>
+    <string name="activity_object_route_button_show_map">Show map</string>
 
 </resources>
