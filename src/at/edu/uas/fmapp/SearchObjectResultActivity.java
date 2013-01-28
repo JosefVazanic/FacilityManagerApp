@@ -24,6 +24,7 @@ public class SearchObjectResultActivity extends LoggedInBaseActivity {
 	private ListView objectListView;
 	private TextView emptyListTextView;
 	private View listHeaderView;
+	private WorkObjectAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class SearchObjectResultActivity extends LoggedInBaseActivity {
 	}
 
 	private void init() {
-		WorkObjectAdapter adapter = new WorkObjectAdapter(this,
+		adapter = new WorkObjectAdapter(this,
 				R.layout.object_list_item_view, appState
 						.getWorkObjectSearchResult().toArray(
 								new WorkObject[] {}));

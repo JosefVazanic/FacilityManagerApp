@@ -13,16 +13,25 @@ import at.edu.uas.fmapp.entity.TaskAssignment;
 import at.edu.uas.fmapp.entity.WorkItem;
 import at.edu.uas.fmapp.utils.TaskContainer;
 import at.edu.uas.fmapp.utils.TaskItemAdapter;
+import at.edu.uas.fmapp.utils.WorkObjectAdapter;
 
 public class ObjectTasksActivity extends LoggedInBaseActivity {
 
 	private ListView taskListView;
 	private TextView emptyListTextView;
 	private View listHeaderView;
+	private TaskItemAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		initLayout();
+		init();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		initLayout();
 		init();
 	}
@@ -36,7 +45,7 @@ public class ObjectTasksActivity extends LoggedInBaseActivity {
 	}
 
 	private void init() {
-		TaskItemAdapter adapter = new TaskItemAdapter(this,
+		adapter = new TaskItemAdapter(this,
 				R.layout.task_list_item_view, getTasks(), appState);
 		taskListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		taskListView.addHeaderView(listHeaderView);

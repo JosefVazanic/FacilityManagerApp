@@ -132,4 +132,13 @@ public class FmApp extends Application {
 		sendBroadcast(broadcastIntent);
 	}
 	
+	public static boolean isTaskChecked(TaskContainer taskContainer) {
+		boolean state = false;
+		WorkItem workItem = taskContainer.getWorkItem();
+		if (workItem != null && "Done".equals(workItem.getStatus())) {
+			state = true;
+		}
+		return state;
+	}
+	
 }

@@ -64,9 +64,9 @@ public class TaskItemAdapter extends ArrayAdapter<TaskContainer> {
 						DetailObjectTask.class));
 			}
 		});
-		
+
 		holder.switcher.setOnCheckedChangeListener(null);
-		holder.switcher.setChecked(isTaskChecked(taskContainer));
+		holder.switcher.setChecked(FmApp.isTaskChecked(taskContainer));
 		holder.switcher
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -77,8 +77,6 @@ public class TaskItemAdapter extends ArrayAdapter<TaskContainer> {
 								getContext(),
 								"The Task '"
 										+ taskContainer.getTask().getName()
-										+ "' with ID '"
-										+ taskContainer.getAssignment().getId()
 										+ "' is " + (isChecked ? "OK" : "DO"),
 								Toast.LENGTH_SHORT).show();
 						WorkItem workItem = taskContainer.getWorkItem();
@@ -99,15 +97,6 @@ public class TaskItemAdapter extends ArrayAdapter<TaskContainer> {
 				});
 
 		return row;
-	}
-
-	private boolean isTaskChecked(TaskContainer taskContainer) {
-		boolean state = false;
-		WorkItem workItem = taskContainer.getWorkItem();
-		if (workItem != null && "Done".equals(workItem.getStatus())) {
-			state = true;
-		}
-		return state;
 	}
 
 	private FmServiceExecutionListener<WorkItem> executionListener = new FmServiceExecutionListener<WorkItem>() {
