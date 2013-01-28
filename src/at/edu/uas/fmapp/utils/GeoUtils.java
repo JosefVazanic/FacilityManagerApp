@@ -2,7 +2,7 @@ package at.edu.uas.fmapp.utils;
 
 import android.location.Location;
 
-import com.google.android.maps.GeoPoint;
+import com.mapquest.android.maps.GeoPoint;
 
 public class GeoUtils {
 
@@ -125,8 +125,16 @@ public class GeoUtils {
 	public static double convertCoordinateToFloat(double coordinate) {
 		return coordinate / ONE_MILLION;
 	}
-
-	public static double getLongitudeFromGeoPoint(GeoPoint geoPoint) {
-		return geoPoint.getLongitudeE6() / ONE_MILLION;
+	
+	/**
+	 * Converts a geo point to a string representation:
+	 * 48.239573,16.345344
+	 * 
+	 * @param geoPoint
+	 * @return
+	 */
+	public static String getCoordinateStringFromGeoPoint(GeoPoint geoPoint) {
+		return Double.toString(geoPoint.getLatitude()) + ","
+				+ Double.toString(geoPoint.getLongitude());
 	}
 }
