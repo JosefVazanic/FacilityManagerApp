@@ -200,7 +200,7 @@ public class ObjectsRouteActivity extends MapActivity {
 
 		@Override
 		public void onSuccess(RouteResponse routeResponse) {
-			// nothing to do
+			showItineraryButton.setEnabled(true);
 		}
 	}
 
