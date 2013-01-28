@@ -1,101 +1,77 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/textView1"
-    android:layout_alignParentLeft="true"
-    android:layout_marginBottom="86dp"
-    android:layout_marginLeft="30dp"
+    android:layout_height="fill_parent"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".NewObjectTask" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textViewEditTaskNameLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:text="@string/activity_object_new_task_name" />
 
-        <TextView
-            android:id="@+id/textViewEditTaskNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <EditText
-            android:id="@+id/editTaskName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" >
-
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/editTaskName"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:ems="10"
+        android:inputType="text" >
 
-        <TextView
-            android:id="@+id/textViewEditTaskDescriptionLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <requestFocus />
+    </EditText>
 
-        <EditText
-            android:id="@+id/editTaskDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" >
-
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textViewEditTaskDescriptionLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_marginTop="15dp"
+        android:text="@string/activity_object_new_task_description" />
 
-        <TextView
-            android:id="@+id/textViewEditTaskFrequencyLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Frequency"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <Spinner
-            android:id="@+id/editTaskFrequency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/editTaskDescription"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:ems="10"
+        android:inputType="text" >
 
-        <TextView
-            android:id="@+id/textViewEditTaskFrequencyInfoLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Frequency Information"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <requestFocus />
+    </EditText>
 
-        <EditText
-            android:id="@+id/editTaskFrequencyInformation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" >
+    <TextView
+        android:id="@+id/textViewEditTaskFrequencyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/activity_object_new_task_frequency" />
 
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
+    <Spinner
+        android:id="@+id/editTaskFrequency"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewEditTaskFrequencyInfoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/activity_object_new_task_information" />
+
+    <EditText
+        android:id="@+id/editTaskFrequencyInformation"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -106,19 +82,15 @@
             android:textOff="DO"
             android:textOn="OK" />
     </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/addTaskButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Task"
-            android:onClick="addTask" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/addTaskButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:onClick="addTask"
+        android:text="@string/activity_object_new_task_button_add_task" />
 
 </LinearLayout>

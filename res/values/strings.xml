@@ -9,7 +9,8 @@
     <string name="activity_object_information_contact">Contact</string>
     <string name="activity_object_information_address">Address</string>
     <string name="activity_object_information_object_number">Object number</string>
-    <string name="activity_result_objects_tasks_title">Your Tasks</string>
+    <string name="activity_object_tasks_title">Your tasks</string>
+    <string name="activity_object_tasks_button_new_tast">New task</string>
     <string name="app_name">Facility Manager</string>
     <string name="menu_item_home">Home</string>
     <string name="menu_item_logout">Logout</string>
@@ -44,12 +45,17 @@
     <string name="activity_search_object_result_object_name_header">Description</string>
     <string name="activity_task_list_name_header">Task</string>
     <string name="activity_task_list_state_header">State</string>
-    <string name="title_activity_new_object_task">NewObjectTask</string>
     <string name="title_activity_detail_object_task">DetailObjectTask</string>
     <string name="activity_object_route_title">Route to object</string>
     <string name="activity_object_route_error">Unable to create route.\nError: %1$d\nMessage: %1$s</string>
     <string name="activity_object_route_mapquest_api_key">Kmjtd%7Cluu22gurnq%2Can%3Do5-gzrl</string>
     <string name="activity_object_route_button_show_route">Show route</string>
     <string name="activity_object_route_button_show_map">Show map</string>
+    <string name="activity_object_new_task_title">New task for object</string>
+    <string name="activity_object_new_task_name">Name</string>
+    <string name="activity_object_new_task_description">Description</string>
+    <string name="activity_object_new_task_frequency">Frequency</string>
+    <string name="activity_object_new_task_information">Information</string>
+    <string name="activity_object_new_task_button_add_task">Add task</string>
 
 </resources>

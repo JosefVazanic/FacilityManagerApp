@@ -52,11 +52,11 @@
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.ObjectTasksActivity"
-            android:label="@string/activity_result_objects_tasks_title" >
+            android:label="@string/activity_object_tasks_title" >
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.NewObjectTask"
-            android:label="@string/title_activity_new_object_task" >
+            android:label="@string/activity_object_new_task_title" >
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.DetailObjectTask"
