@@ -1,12 +1,15 @@
 package at.edu.uas.fmapp.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Application;
 import android.content.Intent;
 import at.edu.uas.fmapp.entity.Task;
 import at.edu.uas.fmapp.entity.TaskAssignment;
+import at.edu.uas.fmapp.entity.WorkItem;
 import at.edu.uas.fmapp.entity.WorkObject;
 import at.edu.uas.fmapp.entity.Worker;
 import at.edu.uas.fmapp.server.FmServiceProxy;
@@ -20,7 +23,10 @@ public class FmApp extends Application {
 	private List<WorkObject> workObjectSearchResult;
 	private List<Task> taskList;
 	private List<TaskAssignment> userTaskAssignments;
+	private Map<Long, WorkItem> userTaskAssignmentsWorkItems;
 	private WorkObject selectedItem;
+	private List<TaskContainer> taskContainerList;
+	private TaskContainer taskContainer;
 
 	private FmServiceProxy proxy;
 
@@ -68,6 +74,9 @@ public class FmApp extends Application {
 	}
 	
 	public List<Task> getAllTasks() {
+		if(taskList == null) {
+			taskList = new ArrayList<Task>();
+		}
 		return taskList;
 	}
 	
@@ -76,6 +85,9 @@ public class FmApp extends Application {
 	}
 
 	public List<TaskAssignment> getUserTasksAssignments() {
+		if(userTaskAssignments == null) {
+			userTaskAssignments = new ArrayList<TaskAssignment>();
+		}
 		return userTaskAssignments;
 	}
 
@@ -83,11 +95,41 @@ public class FmApp extends Application {
 		this.userTaskAssignments = result;
 	}
 	
+	public Map<Long, WorkItem> getUserTaskAssignmentWorkItems() {
+		if(userTaskAssignmentsWorkItems == null) {
+			userTaskAssignmentsWorkItems = new HashMap<Long,WorkItem>();
+		}
+		return userTaskAssignmentsWorkItems;
+	}
+	
+	public void setUserTaskAssignmentWorkItems(Map<Long, WorkItem> map) {
+		this.userTaskAssignmentsWorkItems = map;
+	}
+	
+	public TaskContainer getCurrentTask() {
+		if(userTaskAssignmentsWorkItems == null) {
+			taskContainer = new TaskContainer();
+		}
+		return taskContainer;
+	}
+	
+	public void setCurrentTask(TaskContainer taskContainer) {
+		this.taskContainer = taskContainer;
+	}
+	
+	public List<TaskContainer> getTaskContainerList() {
+		return taskContainerList;
+	}
+
+	public void setTaskContainerList(List<TaskContainer> taskContainerList) {
+		this.taskContainerList = taskContainerList;
+	}
+
 	public void logout() {
 		setLoggedInPerson(null);
 		Intent broadcastIntent = new Intent();
 		broadcastIntent.setAction(LOGOUT_ACTION);
 		sendBroadcast(broadcastIntent);
 	}
-
+	
 }

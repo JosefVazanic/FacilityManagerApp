@@ -1,6 +1,9 @@
 package at.edu.uas.fmapp;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import at.edu.uas.fmapp.entity.Task;
 import at.edu.uas.fmapp.entity.TaskAssignment;
+import at.edu.uas.fmapp.entity.WorkItem;
 import at.edu.uas.fmapp.entity.WorkObject;
 import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 import at.edu.uas.fmapp.utils.WorkObjectAdapter;
@@ -58,23 +62,45 @@ public class SearchObjectResultActivity extends LoggedInBaseActivity {
 
 	public void loadDetail(WorkObject selectedObject) {
 		appState.setSelectedItem(selectedObject);
-		FmServiceExecutionListener<List<Task>> executionListener = new FmServiceExecutionListener<List<Task>>() {
-			@Override
-			public void onPostExecute(List<Task> result) {
-				appState.setAllTasks(result);
-			}
-		};
 		appState.getProxy().getTaskList(executionListener);
-		FmServiceExecutionListener<List<TaskAssignment>> executionListenerTaskAssignment = new FmServiceExecutionListener<List<TaskAssignment>>() {
-			@Override
-			public void onPostExecute(List<TaskAssignment> result) {
-				appState.setUserTasksAssignments(result);
-			}
-		};
 		appState.getProxy().getTaskAssignmentList(
 				appState.getLoggedInPerson().getId(),
 				executionListenerTaskAssignment);
-
 		startActivity(new Intent(this, ObjectDetailActivity.class));
 	}
+
+	private FmServiceExecutionListener<List<Task>> executionListener = new FmServiceExecutionListener<List<Task>>() {
+		@Override
+		public void onPostExecute(List<Task> result) {
+			appState.setAllTasks(result);
+		}
+	};
+
+	private FmServiceExecutionListener<List<TaskAssignment>> executionListenerTaskAssignment = new FmServiceExecutionListener<List<TaskAssignment>>() {
+		@Override
+		public void onPostExecute(List<TaskAssignment> result) {
+			// Get all TaskAssignments of the current user
+			List<TaskAssignment> currentTaskAssignments = new ArrayList<TaskAssignment>();
+			for (TaskAssignment taskAssignment : result) {
+				if (taskAssignment.getWorkObjectId().equals(
+						appState.getSelectedItem().getId())) {
+					currentTaskAssignments.add(taskAssignment);
+				}
+			}
+			appState.setUserTasksAssignments(currentTaskAssignments);
+			appState.getProxy().getWorkItemListForAssignments(currentTaskAssignments,
+					executionListenerWorkObject);
+		}
+	};
+
+	private FmServiceExecutionListener<List<WorkItem>> executionListenerWorkObject = new FmServiceExecutionListener<List<WorkItem>>() {
+		@Override
+		public void onPostExecute(List<WorkItem> result) {
+			Map<Long, WorkItem> map = new HashMap<Long, WorkItem>();
+			for (WorkItem i : result)
+				map.put(i.getTaskAssignmentId(), i);
+			appState.setUserTaskAssignmentWorkItems(map);
+		}
+	};
+
 }

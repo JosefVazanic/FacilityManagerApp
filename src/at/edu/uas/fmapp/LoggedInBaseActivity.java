@@ -40,7 +40,7 @@ public class LoggedInBaseActivity extends Activity {
 						WelcomeActivity.class));
 				Toast.makeText(getBaseContext(),
 						getString(R.string.activity_welcome_logout_message),
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		}, intentFilter);

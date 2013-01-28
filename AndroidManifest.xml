@@ -58,6 +58,10 @@
             android:name="at.edu.uas.fmapp.NewObjectTask"
             android:label="@string/title_activity_new_object_task" >
         </activity>
+        <activity
+            android:name="at.edu.uas.fmapp.DetailObjectTask"
+            android:label="@string/title_activity_detail_object_task" >
+        </activity>
     </application>
 
 </manifest>
