@@ -1,6 +1,7 @@
 package at.edu.uas.fmapp.utils;
 
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -102,12 +103,14 @@ public class TaskItemAdapter extends ArrayAdapter<TaskContainer> {
 	private FmServiceExecutionListener<WorkItem> executionListener = new FmServiceExecutionListener<WorkItem>() {
 		@Override
 		public void onPostExecute(WorkItem result) {
-			for (TaskContainer taskContainer : appState.getTaskContainerList()) {
+			List<TaskContainer> current = appState.getTaskContainerList();
+			for (TaskContainer taskContainer : current) {
 				if (taskContainer.getAssignment().equals(
 						result.getTaskAssignmentId())) {
 					taskContainer.setWorkItem(result);
 				}
 			}
+			appState.setTaskContainerList(current);
 		}
 	};
 

@@ -31,7 +31,7 @@ public class DetailObjectTask extends LoggedInBaseActivity {
 		final TaskContainer currentTaskContainer = appState.getCurrentTask();
 
 		setTitle(currentTaskContainer.getTask().getName());
-		
+
 		m_taskname.setText(currentTaskContainer.getTask().getName());
 		m_taskdescription.setText(currentTaskContainer.getTask()
 				.getDescription());
@@ -48,10 +48,7 @@ public class DetailObjectTask extends LoggedInBaseActivity {
 								getApplicationContext(),
 								"The Task '"
 										+ currentTaskContainer.getTask()
-												.getName()
-										+ "' with ID '"
-										+ currentTaskContainer.getAssignment()
-												.getId() + "' is "
+												.getName() + "' is "
 										+ (isChecked ? "OK" : "DO"),
 								Toast.LENGTH_SHORT).show();
 						WorkItem workItem = currentTaskContainer.getWorkItem();
