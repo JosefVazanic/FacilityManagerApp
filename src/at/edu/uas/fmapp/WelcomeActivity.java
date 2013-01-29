@@ -1,8 +1,5 @@
 package at.edu.uas.fmapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +11,6 @@ import at.edu.uas.fmapp.server.FmServiceExecutionListener;
 import at.edu.uas.fmapp.utils.FmApp;
 
 public class WelcomeActivity extends Activity {
-
-	private List<Worker> m_listWorker;
 
 	private EditText m_username;
 	private EditText m_password;
@@ -37,37 +32,15 @@ public class WelcomeActivity extends Activity {
 		// TODO remove - its used for fast login during development
 		m_username.setText("TestWorker1");
 		m_password.setText("worker123");
-
-		FmServiceExecutionListener<List<Worker>> executionListener = new FmServiceExecutionListener<List<Worker>>() {
-
-			@Override
-			public void onPostExecute(List<Worker> result) {
-				// set values for login spinner
-				m_listWorker = result;
-				if (m_listWorker == null) {
-					m_listWorker = new ArrayList<Worker>();
-				}
-			}
-		};
-
-		getAppState().getProxy().getWorkerList(executionListener);
 	}
 
 	public void login(View v) {
-		FmServiceExecutionListener<Boolean> executionListener = new FmServiceExecutionListener<Boolean>() {
+		FmServiceExecutionListener<Worker> executionListener = new FmServiceExecutionListener<Worker>() {
 
 			@Override
-			public void onPostExecute(Boolean result) {
-				// set values for login spinner
-				if (Boolean.TRUE.equals(result)) {
-					Worker selectedWorker = null;
-					for (Worker worker : m_listWorker) {
-						if (m_username.getText().toString()
-								.equals(worker.getUserName())) {
-							selectedWorker = worker;
-						}
-					}
-					getAppState().setLoggedInPerson(selectedWorker);
+			public void onPostExecute(Worker result) {
+				if (result != null) {
+					getAppState().setLoggedInPerson(result);
 					startActivity(new Intent(WelcomeActivity.this,
 							HomeActivity.class));
 				} else {

@@ -14,7 +14,7 @@
     <string name="app_name">Facility Manager</string>
     <string name="menu_item_home">Home</string>
     <string name="menu_item_logout">Logout</string>
-    <string name="activity_welcome_title">FacilityManager</string>
+    <string name="activity_welcome_title">Facility Manager 2.0</string>
     <string name="activity_welcome_message">Log in to use\nFacility Manager!</string>
     <string name="activity_welcome_label_username">Username</string>
     <string name="activity_welcome_label_password">Password</string>
@@ -45,7 +45,6 @@
     <string name="activity_search_object_result_object_name_header">Description</string>
     <string name="activity_task_list_name_header">Task</string>
     <string name="activity_task_list_state_header">State</string>
-    <string name="title_activity_detail_object_task">DetailObjectTask</string>
     <string name="activity_object_route_title">Route to object</string>
     <string name="activity_object_route_error">Unable to create route.\nError: %1$d\nMessage: %1$s</string>
     <string name="activity_object_route_mapquest_api_key">Kmjtd%7Cluu22gurnq%2Can%3Do5-gzrl</string>
@@ -57,5 +56,8 @@
     <string name="activity_object_new_task_frequency">Frequency</string>
     <string name="activity_object_new_task_information">Information</string>
     <string name="activity_object_new_task_button_add_task">Add task</string>
+    <string name="activity_object_task_detail_title">Task details</string>
+    <string name="activity_object_task_detail_workflow">Workflow</string>
+    <string name="activity_object_task_detail_description">Description</string>
 
 </resources>

@@ -60,7 +60,7 @@
         </activity>
         <activity
             android:name="at.edu.uas.fmapp.DetailObjectTask"
-            android:label="@string/title_activity_detail_object_task" >
+            android:label="@string/activity_object_task_detail_title" >
         </activity>
     </application>
 

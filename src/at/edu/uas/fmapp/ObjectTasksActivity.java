@@ -13,7 +13,6 @@ import at.edu.uas.fmapp.entity.TaskAssignment;
 import at.edu.uas.fmapp.entity.WorkItem;
 import at.edu.uas.fmapp.utils.TaskContainer;
 import at.edu.uas.fmapp.utils.TaskItemAdapter;
-import at.edu.uas.fmapp.utils.WorkObjectAdapter;
 
 public class ObjectTasksActivity extends LoggedInBaseActivity {
 

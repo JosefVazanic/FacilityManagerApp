@@ -62,7 +62,7 @@ public class FmServiceProxy {
 	}
 
 	public void authenticateWorker(String username, String password,
-			FmServiceExecutionListener<Boolean> executionListener) {
+			FmServiceExecutionListener<Worker> executionListener) {
 		executeServiceMethod(METHOD_AUTHENTICATE, new Object[] { username,
 				password }, executionListener);
 	}
@@ -244,8 +244,28 @@ public class FmServiceProxy {
 
 			result = workItem;
 
-		} else if (methodName.equals(METHOD_AUTHENTICATE)
-				|| methodName.equals(METHOD_INSERT_ADDITIONAL_WORK_ITEM)) {
+		} else if (methodName.equals(METHOD_AUTHENTICATE)) {
+
+			Object[] workerData = (Object[]) serviceResult;
+
+			if (workerData.length == 0) {
+				result = null;
+			} else {
+
+				Worker worker = new Worker((Long) workerData[0]);
+				worker.setUserName((String) workerData[1]);
+				worker.setFirstName((String) workerData[2]);
+				worker.setLastName((String) workerData[3]);
+				worker.setDateOfBirth((Date) workerData[4]);
+				worker.setMobile((String) workerData[5]);
+				worker.setPhone((String) workerData[6]);
+				worker.setEmail((String) workerData[7]);
+				worker.setLatitude((Long) workerData[8]);
+				worker.setLongitude((Long) workerData[9]);
+				result = worker;
+			}
+
+		} else if (methodName.equals(METHOD_INSERT_ADDITIONAL_WORK_ITEM)) {
 
 			result = Boolean.TRUE.equals(serviceResult);
 

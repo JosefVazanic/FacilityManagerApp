@@ -1,58 +1,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/textView1"
-    android:layout_alignParentLeft="true"
-    android:layout_marginBottom="86dp"
-    android:layout_marginLeft="30dp"
+    android:layout_height="fill_parent"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".DetailObjectTask" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textViewTaskNameLabel"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:text="@string/activity_object_task_detail_workflow" />
 
-        <TextView
-            android:id="@+id/textViewTaskNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Workflow"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/textViewTaskName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/textViewTaskName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/textViewTaskDescriptionLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/activity_object_task_detail_description" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textViewTaskDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textViewTaskDescriptionLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/textViewTaskDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center" >
+        android:layout_marginTop="15dp" >
 
         <Switch
             android:id="@+id/taskDetailSwitcher"
